@@ -1,251 +1,330 @@
-/* ===== ADMIN PORTAL - PROFESSIONAL MODERN THEME ===== */
+/* ===== ADMIN PORTAL - PROFESSIONAL FIORI INTERFACE ===== */
 
 /* Global Styling */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background: #ffffff !important;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #374151;
 }
 
 .sapMPage {
     background: #ffffff !important;
 }
 
-/* Modern Sidebar - Professional Light Gray */
-.modernSidebar {
-    background: linear-gradient(180deg, #e8ecf1 0%, #f5f7fa 100%) !important;
+/* Portal Header */
+.portalHeader {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%) !important;
+    padding: 16px 24px !important;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    border-right: 1px solid #d0d5e0;
-    border-radius: 0;
+    border-bottom: 1px solid #d0d5e0;
+    min-height: 64px;
 }
 
-.modernSidebar .sapMList {
-    background: transparent !important;
+.portalTitle {
+    color: #1a3a52 !important;
+    font-weight: 700 !important;
+    font-size: 1.75rem !important;
+    margin: 0 !important;
+    flex: 1;
+    text-align: center;
 }
 
-.modernSidebar .sidebarItem {
-    color: #374151 !important;
-    border-bottom: 1px solid #e5e7eb !important;
-    padding: 14px 16px !important;
-    transition: all 0.2s ease;
-}
-
-.modernSidebar .sidebarItem.sapMLIBSelected {
-    background: linear-gradient(90deg, #0a6ed1 0%, #0876a3 100%) !important;
-    border-left: 4px solid #0a6ed1 !important;
-    padding-left: 12px !important;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.modernSidebar .sidebarItem.sapMLIBSelected .sapMSLITitleOnly {
-    color: #ffffff !important;
-    font-weight: 600 !important;
-}
-
-.modernSidebar .sapMSLITitleOnly {
-    color: #374151 !important;
-    font-weight: 500 !important;
-    font-size: 0.95rem !important;
-}
-
-.modernSidebar .sapUiIcon {
+.menuToggleButton {
     color: #0a6ed1 !important;
-    font-size: 1.1rem !important;
-    margin-right: 12px !important;
+    font-size: 1.5rem !important;
 }
 
-#navigationMenu {
-    background: transparent !important;
-}
-
-#navigationMenu .sapMLIB {
-    background: transparent !important;
-    border-bottom: 1px solid #e5e7eb !important;
-    padding: 14px 16px !important;
-}
-
-#navigationMenu .sapMLIB:focus {
+.menuToggleButton:hover {
     background: #f0f4fa !important;
 }
 
-#navigationMenu .sapMLIBSelected {
+/* Main Container */
+.mainContainer {
+    background: #ffffff;
+    overflow: hidden;
+    height: calc(100vh - 80px);
+}
+
+/* Collapsible Sidebar */
+.collapsibleSidebar {
+    background: linear-gradient(180deg, #e8ecf1 0%, #f5f7fa 100%) !important;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+    border-right: 1px solid #d0d5e0;
+    min-height: 100%;
+    overflow-y: auto;
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+.sidebarMenu {
+    background: transparent !important;
+    border: none !important;
+}
+
+.sidebarMenuItem {
+    padding: 16px 20px !important;
+    min-height: auto !important;
+    border-bottom: 1px solid #e5e7eb !important;
+    transition: all 0.2s ease;
+}
+
+.sidebarMenuItem:focus {
+    background: #f0f4fa !important;
+}
+
+.sapMLIBSelected.sidebarMenuItem {
     background: linear-gradient(90deg, #0a6ed1 0%, #0876a3 100%) !important;
     border-left: 4px solid #0a6ed1 !important;
-    padding-left: 12px !important;
+    padding-left: 16px !important;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-#navigationMenu .sapMSLITitleOnly {
+.sidebarMenuItem .sapMSLITitleOnly {
     color: #374151 !important;
     font-weight: 500 !important;
-    font-size: 0.95rem !important;
+    font-size: 1rem !important;
 }
 
-#navigationMenu .sapMLIBSelected .sapMSLITitleOnly {
+.sapMLIBSelected.sidebarMenuItem .sapMSLITitleOnly {
     color: #ffffff !important;
     font-weight: 600 !important;
 }
 
-#navigationMenu .sapUiIcon {
+.sidebarMenuItem .sapUiIcon {
     color: #0a6ed1 !important;
+    font-size: 1.25rem !important;
+    margin-right: 12px !important;
 }
 
-#navigationMenu .sapMLIBSelected .sapUiIcon {
+.sapMLIBSelected.sidebarMenuItem .sapUiIcon {
     color: #ffffff !important;
 }
 
-/* Modern Content Area */
-.modernContent {
+/* Content Area */
+.contentAreaMain {
+    flex: 1;
+    overflow-y: auto;
     background: #ffffff;
-    padding: 32px 40px !important;
+    padding: 0;
 }
 
-/* Modern Toolbar */
-.modernToolbar {
-    background: #ffffff !important;
-    border: 1px solid #e5e7eb !important;
-    border-radius: 8px;
-    padding: 12px 16px !important;
-    margin-bottom: 24px !important;
+.contentPage {
+    width: 100%;
+    padding: 0;
+    overflow: auto;
+}
+
+.pageToolbar {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%) !important;
+    border-bottom: 1px solid #d0d5e0 !important;
+    padding: 16px 24px !important;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    min-height: 60px;
 }
 
-.modernToolbar .sapMBtn {
+.pageToolbar .sapMTitle {
+    color: #1a3a52 !important;
+    font-weight: 700 !important;
+    font-size: 1.5rem !important;
+    margin: 0 !important;
+}
+
+/* Dashboard Page Styling */
+.dashboardPage {
+    width: 100%;
+    overflow-y: auto;
+}
+
+.pageHeader {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+    padding: 24px 32px !important;
+    border-bottom: 2px solid #d0d5e0;
+}
+
+.dashboardHeader {
+    padding: 24px 32px !important;
+}
+
+.dashboardTitle {
+    color: #1a3a52 !important;
+    font-weight: 700 !important;
+    font-size: 1.75rem !important;
+    margin: 0 0 8px 0 !important;
+}
+
+.dashboardSubtitle {
+    color: #6b7280 !important;
+    font-size: 1rem !important;
+    margin: 0 !important;
+    font-weight: 400;
+}
+
+/* KPI Section */
+.kpiSection {
+    padding: 32px 32px !important;
+    background: #ffffff;
+}
+
+.sectionTitle {
+    color: #1a3a52 !important;
+    font-weight: 700 !important;
+    font-size: 1.5rem !important;
+    margin-bottom: 24px !important;
+}
+
+.kpiContainer {
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.kpiTile {
+    width: 15% !important;
+    min-width: 160px;
+    margin: 8px;
+    border-radius: 12px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+    border: 1px solid #e5e7eb;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.kpiTile:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
+    transform: translateY(-2px);
+}
+
+.kpiTile .sapMTileContent {
+    padding: 16px !important;
+}
+
+.sapMNumericContent {
+    font-size: 1.75rem !important;
+    font-weight: 700 !important;
+    color: #0a6ed1 !important;
+}
+
+.sapMNumericContent .sapMNumericContentValue {
+    font-size: 1.75rem !important;
+}
+
+/* Charts Section */
+.chartsRow {
+    padding: 32px 32px !important;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.chartContainer {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px !important;
+    padding: 24px !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.chartContainer:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.chartTitle {
+    color: #1a3a52 !important;
+    font-weight: 700 !important;
+    font-size: 1.25rem !important;
+    margin-bottom: 16px !important;
+}
+
+.vizChart {
+    border-radius: 8px !important;
+}
+
+/* Visualization Chart Styling */
+.sapVizFrame {
+    border-radius: 8px !important;
+}
+
+.sapVizFrame .sapVizChartSvg {
+    border-radius: 8px !important;
+}
+
+/* Buttons */
+.sapMBtn {
     border-radius: 6px !important;
     font-weight: 500 !important;
-    margin-right: 8px !important;
-    transition: box-shadow 0.2s ease;
+    font-size: 1rem !important;
+    transition: all 0.2s ease;
 }
 
 /* Emphasized Button - Blue */
-.modernToolbar .sapMBtnEmphasized {
+.sapMBtnEmphasized {
     background: #0a6ed1 !important;
     color: #ffffff !important;
     box-shadow: 0 2px 4px rgba(10, 110, 209, 0.25);
 }
 
-.modernToolbar .sapMBtnEmphasized:active {
+.sapMBtnEmphasized:active {
     box-shadow: 0 4px 8px rgba(10, 110, 209, 0.35);
 }
 
-/* Negative Button - RED (Professional) */
-.modernToolbar .sapMBtnNegative {
+/* Negative Button - RED */
+.sapMBtnNegative {
     background: #c41e3a !important;
     color: #ffffff !important;
     box-shadow: 0 2px 4px rgba(196, 30, 58, 0.25);
 }
 
-.modernToolbar .sapMBtnNegative:active {
+.sapMBtnNegative:active {
     box-shadow: 0 4px 8px rgba(196, 30, 58, 0.35);
 }
 
-/* Attention Button - Orange */
-.modernToolbar .sapMBtnAttention {
-    background: #e74c3c !important;
-    color: #ffffff !important;
-    box-shadow: 0 2px 4px rgba(231, 76, 60, 0.25);
-}
-
-.modernToolbar .sapMBtnAttention:active {
-    box-shadow: 0 4px 8px rgba(231, 76, 60, 0.35);
-}
-
-/* Success Button - Green */
-.modernToolbar .sapMBtnSuccess {
-    background: #05b850 !important;
-    color: #ffffff !important;
-    box-shadow: 0 2px 4px rgba(5, 184, 80, 0.25);
-}
-
-.modernToolbar .sapMBtnSuccess:active {
-    box-shadow: 0 4px 8px rgba(5, 184, 80, 0.35);
-}
-
-/* Modern Search Field */
-.modernSearch {
-    border-radius: 6px !important;
-    background: #ffffff !important;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
-}
-
-.modernSearch .sapMInputVH {
-    border-radius: 6px !important;
-}
-
-/* Modern Table */
-.modernTable {
-    border-radius: 8px !important;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
-    overflow: hidden;
-}
-
-.modernTable .sapMListTblHeaderCell {
-    background: #f5f7fa !important;
-    color: #1a3a52 !important;
-    font-weight: 600 !important;
-    border-bottom: 2px solid #d0d5e0 !important;
-}
-
-.modernTable .sapMListTblRow {
-    transition: background 0.15s ease;
-}
-
-.modernTable .sapMListTblRow:nth-child(even) {
-    background: #fafbfc;
-}
-
-.modernTable .sapMListTblCell {
-    border-color: #e5e7eb !important;
-    color: #374151 !important;
-}
-
-/* Title Styling */
+/* Text and Typography */
 .sapMTitle {
-    font-weight: 700 !important;
     color: #1a3a52 !important;
+    font-weight: 700 !important;
     margin-bottom: 16px !important;
 }
 
-/* Buttons */
-.sapMBtn {
-    transition: box-shadow 0.2s ease;
-    border-radius: 6px !important;
+.sapMText {
+    color: #374151 !important;
+    font-size: 1rem !important;
 }
 
-/* Object Status */
-.sapMObjectStatus {
-    border-radius: 4px;
-    padding: 4px 8px !important;
-    font-weight: 500;
-    font-size: 0.875rem;
+/* List Styling */
+.sapMList {
+    background: transparent !important;
 }
 
-.sapMObjectStatus.sapMObjectStatusSuccess {
-    background: rgba(5, 184, 80, 0.15) !important;
-    color: #05b850 !important;
+.sapMListTblHeaderCell {
+    background: #f5f7fa !important;
+    color: #1a3a52 !important;
+    font-weight: 700 !important;
+    font-size: 1rem !important;
+    border-bottom: 2px solid #d0d5e0 !important;
+    padding: 12px 16px !important;
 }
 
-.sapMObjectStatus.sapMObjectStatusWarning {
-    background: rgba(231, 76, 60, 0.15) !important;
-    color: #e74c3c !important;
+.sapMListTblRow {
+    transition: background 0.15s ease;
 }
 
-.sapMObjectStatus.sapMObjectStatusError {
-    background: rgba(196, 30, 58, 0.15) !important;
-    color: #c41e3a !important;
+.sapMListTblRow:nth-child(even) {
+    background: #fafbfc;
 }
 
-.sapMObjectStatus.sapMObjectStatusNone {
-    background: rgba(189, 198, 212, 0.15) !important;
-    color: #757575 !important;
+.sapMListTblCell {
+    border-color: #e5e7eb !important;
+    color: #374151 !important;
+    font-size: 1rem !important;
+    padding: 12px 16px !important;
 }
 
-/* iFrame Styling */
-.sapUIHtml {
-    border-radius: 12px !important;
-    overflow: hidden;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-}
-
-/* Panel/Card Styling - Remove Big Blue Headers */
+/* Panel */
 .sapMPanel {
     border-radius: 12px !important;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
@@ -255,66 +334,87 @@ body {
 
 .sapMPanelExpandable .sapMPanelHdrBar {
     background: #f5f7fa !important;
-    border-radius: 12px 12px 0 0 !important;
     color: #1a3a52 !important;
     border-bottom: 1px solid #d0d5e0 !important;
     font-weight: 600 !important;
+    padding: 12px 16px !important;
 }
 
-/* Navigation Menu Styling */
-#navigationMenu .sapMLIB {
-    min-height: auto !important;
-    padding: 14px 16px !important;
+/* Scrollbar Styling */
+.contentAreaMain::-webkit-scrollbar {
+    width: 8px;
 }
 
-#navigationMenu .sapMSLITitleOnly {
-    font-size: 0.95rem !important;
-    font-weight: 500 !important;
+.contentAreaMain::-webkit-scrollbar-track {
+    background: #f1f1f1;
 }
 
-#navigationMenu .sapUiIcon {
-    font-size: 1.1rem !important;
-    margin-right: 12px !important;
+.contentAreaMain::-webkit-scrollbar-thumb {
+    background: #d0d5e0;
+    border-radius: 4px;
 }
 
-/* List Item Styling */
-.sapMLIB {
-    min-height: auto !important;
-    transition: all 0.2s ease;
+.contentAreaMain::-webkit-scrollbar-thumb:hover {
+    background: #a8aeb8;
 }
 
-.sapMSLITitleOnly {
-    font-size: 0.95rem !important;
-    font-weight: 500 !important;
+.collapsibleSidebar::-webkit-scrollbar {
+    width: 6px;
 }
 
-.sapUiIcon {
-    font-size: 1.1rem !important;
+.collapsibleSidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.collapsibleSidebar::-webkit-scrollbar-thumb {
+    background: #d0d5e0;
+    border-radius: 3px;
+}
+
+.collapsibleSidebar::-webkit-scrollbar-thumb:hover {
+    background: #a8aeb8;
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-    .modernSidebar {
-        width: 0 !important;
-        transform: translateX(-100%);
-    }
-
-    .modernContent {
+@media (max-width: 1024px) {
+    .chartContainer {
         width: 100% !important;
-        padding: 16px !important;
     }
-
-    .modernToolbar {
-        flex-direction: column !important;
-        gap: 8px;
-    }
-
-    .modernSearch {
-        width: 100% !important;
+    
+    .kpiTile {
+        width: 20% !important;
+        min-width: 140px;
     }
 }
 
-/* Animation Effects */
+@media (max-width: 768px) {
+    .portalTitle {
+        font-size: 1.25rem !important;
+    }
+    
+    .dashboardTitle {
+        font-size: 1.5rem !important;
+    }
+    
+    .kpiTile {
+        width: 30% !important;
+        min-width: 120px;
+    }
+    
+    .chartContainer {
+        width: 100% !important;
+    }
+    
+    .collapsibleSidebar {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        z-index: 1000;
+    }
+}
+
+/* Animation */
 @keyframes slideIn {
     from {
         opacity: 0;
@@ -326,6 +426,33 @@ body {
     }
 }
 
-.modernContent {
+.contentPage {
     animation: slideIn 0.3s ease;
+}
+
+/* Generic Tile Content Styling */
+.sapMGenericTile {
+    margin: 8px;
+}
+
+.sapMTile {
+    border-radius: 12px !important;
+}
+
+.sapMTileContent {
+    padding: 16px !important;
+}
+
+/* Numeric Content */
+.sapMNumericContent {
+    font-weight: 700 !important;
+}
+
+.sapMNumericContent .sapMNumericContentValue {
+    color: #0a6ed1 !important;
+    font-size: 1.75rem !important;
+}
+
+.sapMNumericContent .sapMNumericContentIconImage {
+    color: #0a6ed1 !important;
 }

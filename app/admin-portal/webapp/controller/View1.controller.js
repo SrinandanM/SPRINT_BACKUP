@@ -28,29 +28,109 @@ sap.ui.define([
         {
 
             onInit: function () {
-
-                this._loadDashboard();
-
+                this._loadDashboardCharts();
             },
 
-            _loadDashboard: async function () {
+            onMenuToggle: function () {
+                const oSidebar = this.byId("sidebarContainer");
+                const bVisible = oSidebar.getVisible();
+                oSidebar.setVisible(!bVisible);
+            },
 
-                const response = await fetch(
-                    "/odata/v4/asset-admin/AssetKPIs"
-                );
+            onMenuSelect: function (oEvent) {
+                const sTitle = oEvent.getParameter("listItem").getTitle();
+                
+                // Hide all containers
+                this.byId("dashboardContainer").setVisible(false);
+                this.byId("assetsContainer").setVisible(false);
+                this.byId("requestsContainer").setVisible(false);
+                this.byId("employeesContainer").setVisible(false);
+                this.byId("departmentsContainer").setVisible(false);
+                this.byId("vendorsContainer").setVisible(false);
+                this.byId("categoriesContainer").setVisible(false);
+                this.byId("reportsContainer").setVisible(false);
 
-                const data = await response.json();
+                // Show selected container
+                switch (sTitle) {
+                    case "Dashboard":
+                        this.byId("dashboardContainer").setVisible(true);
+                        break;
+                    case "Assets":
+                        this.byId("assetsContainer").setVisible(true);
+                        break;
+                    case "Asset Requests":
+                        this.byId("requestsContainer").setVisible(true);
+                        break;
+                    case "Employees":
+                        this.byId("employeesContainer").setVisible(true);
+                        this._loadEmployees();
+                        break;
+                    case "Departments":
+                        this.byId("departmentsContainer").setVisible(true);
+                        this._loadDepartments();
+                        break;
+                    case "Vendors":
+                        this.byId("vendorsContainer").setVisible(true);
+                        break;
+                    case "Categories":
+                        this.byId("categoriesContainer").setVisible(true);
+                        break;
+                    case "Reports":
+                        this.byId("reportsContainer").setVisible(true);
+                        break;
+                }
+            },
 
-                if (data.value && data.value.length > 0) {
+            _loadDashboardCharts: async function () {
+                this._loadKPIs();
+                this._loadStatusChart();
+                this._loadCategoryChart();
+                this._loadDepartmentChart();
+            },
 
-                    const model = new JSONModel(
-                        data.value[0]
-                    );
+            _loadKPIs: async function () {
+                try {
+                    const response = await fetch("/odata/v4/asset-admin/AssetKPIs");
+                    const data = await response.json();
+                    if (data.value && data.value.length > 0) {
+                        const oModel = new JSONModel(data.value[0]);
+                        this.getView().setModel(oModel, "kpi");
+                    }
+                } catch (error) {
+                    console.error("Error loading KPIs:", error);
+                }
+            },
 
-                    this.getView().setModel(
-                        model,
-                        "dashboard"
-                    );
+            _loadStatusChart: async function () {
+                try {
+                    const response = await fetch("/odata/v4/asset-admin/AssetStatusChart");
+                    const data = await response.json();
+                    const oModel = new JSONModel(data.value);
+                    this.getView().setModel(oModel, "status");
+                } catch (error) {
+                    console.error("Error loading status chart:", error);
+                }
+            },
+
+            _loadCategoryChart: async function () {
+                try {
+                    const response = await fetch("/odata/v4/asset-admin/AssetCategoryChart");
+                    const data = await response.json();
+                    const oModel = new JSONModel(data.value);
+                    this.getView().setModel(oModel, "category");
+                } catch (error) {
+                    console.error("Error loading category chart:", error);
+                }
+            },
+
+            _loadDepartmentChart: async function () {
+                try {
+                    const response = await fetch("/odata/v4/asset-admin/AssetDepartmentChart");
+                    const data = await response.json();
+                    const oModel = new JSONModel(data.value);
+                    this.getView().setModel(oModel, "department");
+                } catch (error) {
+                    console.error("Error loading department chart:", error);
                 }
             },
 _loadEmployees: async function () {
