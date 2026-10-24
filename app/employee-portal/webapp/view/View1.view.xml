@@ -11,11 +11,20 @@
         class="sapUiResponsiveContentPadding">
 
         <headerContent>
-            <Title
-                text="Employee Self-Service Portal"
-                level="H1"
-                titleStyle="H1"
-                class="sapUiLargeMarginBottom" />
+            <HBox width="100%" alignItems="Center" justifyContent="SpaceBetween">
+                <Button
+                    id="menuToggleBtn"
+                    icon="sap-icon://menu"
+                    type="Transparent"
+                    press=".onMenuToggle"
+                    tooltip="Toggle Menu" />
+                <Title
+                    text="Asset Lifecycle Management Portal"
+                    level="H1"
+                    titleStyle="H1"
+                    class="menuTitle" />
+                <HBox width="50px" />
+            </HBox>
         </headerContent>
 
         <content>
@@ -25,11 +34,13 @@
                 width="100%"
                 renderType="Bare">
 
-                <!-- MODERN SIDEBAR -->
+                <!-- COLLAPSIBLE SIDEBAR -->
 
                 <VBox
-                    width="20%"
-                    class="modernSidebar">
+                    id="sidebarContainer"
+                    width="280px"
+                    class="modernSidebar"
+                    visible="true">
 
                     <List
                         id="navigationMenu"
@@ -74,7 +85,7 @@
 
                 <VBox
                     id="contentArea"
-                    width="80%"
+                    width="100%"
                     class="sapUiResponsiveContentPadding modernContent">
 
                     <!-- DASHBOARD -->

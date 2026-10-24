@@ -15,6 +15,21 @@ sap.ui.define([
                 this._initializeDashboard();
             },
 
+            onMenuToggle: function () {
+                const oSidebar = this.byId("sidebarContainer");
+                const bVisible = oSidebar.getVisible();
+                oSidebar.setVisible(!bVisible);
+                
+                // Adjust content area width
+                const oContentArea = this.byId("contentArea");
+                if (!bVisible) {
+                    oContentArea.setWidth("100%");
+                    oSidebar.setWidth("280px");
+                } else {
+                    oContentArea.setWidth("100%");
+                }
+            },
+
             _initializeDashboard: function () {
                 // Initialize dashboard model with default values
                 const oDashboardModel = new JSONModel({
