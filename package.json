@@ -45,11 +45,12 @@
     "app/project4",
     "app/asset",
     "app/project5",
-    "app/project5",
     "app/project6",
-    "app/project1",
     "app/admin-asset",
     "app/project7",
-    "app/project1"
+    "app/admin-portal",
+    "app/admin-dashboard",
+    "app/manager-portal",
+    "app/employee-portal"
   ]
 }
