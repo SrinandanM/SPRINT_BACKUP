@@ -1,421 +1,330 @@
-/* ===== ADMIN PORTAL - PROFESSIONAL FIORI INTERFACE ===== */
+/* ===== PROFESSIONAL ADMIN PORTAL - ENTERPRISE DASHBOARD ===== */
 
-/* Global Styling */
-html, body {
-    height: 100%;
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    background: #f8f9fa;
 }
 
 body {
-    background: #ffffff !important;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #374151;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    color: #2c3e50;
+    background: linear-gradient(135deg, #f5f7fa 0%, #f8f9fb 100%);
 }
 
 .sapMPage {
-    background: #ffffff !important;
+    background: transparent !important;
 }
 
-/* Portal Header */
-.portalHeader {
-    background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%) !important;
-    padding: 16px 24px !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    border-bottom: 1px solid #d0d5e0;
-    min-height: 64px;
+/* ===== NAVIGATION BAR ===== */
+.navBar {
+    background: linear-gradient(90deg, #1a365d 0%, #2c5aa0 100%);
+    box-shadow: 0 4px 20px rgba(26, 54, 93, 0.15);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 1000;
 }
 
-.portalTitle {
-    color: #1a3a52 !important;
+.navBarContent {
+    padding: 0 20px;
+    height: 64px;
+    gap: 16px;
+}
+
+.navTitle {
+    color: #ffffff !important;
     font-weight: 700 !important;
-    font-size: 1.75rem !important;
+    font-size: 1.375rem !important;
     margin: 0 !important;
-    flex: 1;
-    text-align: center;
+    letter-spacing: -0.5px;
 }
 
-.menuToggleButton {
-    color: #0a6ed1 !important;
-    font-size: 1.5rem !important;
+.navButton {
+    color: rgba(255, 255, 255, 0.9) !important;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 8px !important;
 }
 
-.menuToggleButton:hover {
-    background: #f0f4fa !important;
+.navButton:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
 }
 
-/* Main Container */
-.mainContainer {
-    background: #ffffff;
-    overflow: hidden;
-    height: calc(100vh - 80px);
+/* ===== MAIN LAYOUT ===== */
+.mainLayout {
+    background: #f8f9fa;
 }
 
-/* Collapsible Sidebar */
-.collapsibleSidebar {
-    background: linear-gradient(180deg, #e8ecf1 0%, #f5f7fa 100%) !important;
-    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
-    border-right: 1px solid #d0d5e0;
-    min-height: 100%;
+/* ===== SIDEBAR ===== */
+.sidebar {
+    background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+    box-shadow: 2px 0 16px rgba(0, 0, 0, 0.08);
+    border-right: 1px solid #e8ecf1;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     overflow-y: auto;
-    transition: all 0.3s ease;
-    z-index: 100;
+    overflow-x: hidden;
 }
 
-.sidebarMenu {
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #d0d5e0;
+    border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: #a8aeb8;
+}
+
+.navMenu {
     background: transparent !important;
     border: none !important;
 }
 
-.sidebarMenuItem {
-    padding: 16px 20px !important;
+.navItem {
+    padding: 14px 16px !important;
     min-height: auto !important;
-    border-bottom: 1px solid #e5e7eb !important;
+    border-left: 3px solid transparent !important;
     transition: all 0.2s ease;
+    margin: 4px 0;
 }
 
-.sidebarMenuItem:focus {
-    background: #f0f4fa !important;
-}
-
-.sapMLIBSelected.sidebarMenuItem {
-    background: linear-gradient(90deg, #0a6ed1 0%, #0876a3 100%) !important;
-    border-left: 4px solid #0a6ed1 !important;
-    padding-left: 16px !important;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.sidebarMenuItem .sapMSLITitleOnly {
-    color: #374151 !important;
+.navItem .sapMSLITitleOnly {
+    color: #2c3e50 !important;
     font-weight: 500 !important;
-    font-size: 1rem !important;
+    font-size: 0.95rem !important;
 }
 
-.sapMLIBSelected.sidebarMenuItem .sapMSLITitleOnly {
-    color: #ffffff !important;
-    font-weight: 600 !important;
-}
-
-.sidebarMenuItem .sapUiIcon {
-    color: #0a6ed1 !important;
-    font-size: 1.25rem !important;
+.navItem .sapUiIcon {
+    color: #2c5aa0 !important;
+    font-size: 1.2rem !important;
     margin-right: 12px !important;
 }
 
-.sapMLIBSelected.sidebarMenuItem .sapUiIcon {
-    color: #ffffff !important;
+.navItem:focus {
+    background: #f0f4fa !important;
 }
 
-/* Content Area */
-.contentAreaMain {
-    flex: 1;
-    overflow-y: auto;
-    background: #ffffff;
-    padding: 0;
+.sapMLIBSelected.navItem {
+    background: linear-gradient(90deg, rgba(44, 90, 160, 0.1) 0%, rgba(44, 90, 160, 0.05) 100%) !important;
+    border-left-color: #2c5aa0 !important;
+    box-shadow: inset -3px 0 0 #2c5aa0;
 }
 
-.contentPage {
-    width: 100%;
-    padding: 0;
-    overflow: auto;
-}
-
-.pageToolbar {
-    background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%) !important;
-    border-bottom: 1px solid #d0d5e0 !important;
-    padding: 16px 24px !important;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-    min-height: 60px;
-}
-
-.pageToolbar .sapMTitle {
-    color: #1a3a52 !important;
+.sapMLIBSelected.navItem .sapMSLITitleOnly {
+    color: #1a365d !important;
     font-weight: 700 !important;
-    font-size: 1.5rem !important;
-    margin: 0 !important;
 }
 
-/* Dashboard Page Styling */
-.dashboardPage {
-    width: 100%;
-    overflow-y: auto;
+.sapMLIBSelected.navItem .sapUiIcon {
+    color: #1a365d !important;
+}
+
+/* ===== CONTENT AREA ===== */
+.contentContainer {
+    background: #f8f9fa;
+}
+
+.pageContent {
+    padding: 32px;
+    gap: 24px;
 }
 
 .pageHeader {
-    background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
-    padding: 24px 32px !important;
-    border-bottom: 2px solid #d0d5e0;
-}
-
-.dashboardHeader {
-    padding: 24px 32px !important;
-}
-
-.dashboardTitle {
-    color: #1a3a52 !important;
-    font-weight: 700 !important;
-    font-size: 1.75rem !important;
-    margin: 0 0 8px 0 !important;
-}
-
-.dashboardSubtitle {
-    color: #6b7280 !important;
-    font-size: 1rem !important;
-    margin: 0 !important;
-    font-weight: 400;
-}
-
-/* KPI Section */
-.kpiSection {
-    padding: 32px 32px !important;
-    background: #ffffff;
-}
-
-.sectionTitle {
-    color: #1a3a52 !important;
-    font-weight: 700 !important;
-    font-size: 1.5rem !important;
-    margin-bottom: 24px !important;
-}
-
-.kpiContainer {
-    gap: 16px;
-    margin-bottom: 32px;
-}
-
-.kpiTile {
-    width: 15% !important;
-    min-width: 160px;
-    margin: 8px;
-    border-radius: 12px !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
-    border: 1px solid #e5e7eb;
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
-
-.kpiTile:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
-    transform: translateY(-2px);
-}
-
-.kpiTile .sapMTileContent {
-    padding: 16px !important;
-}
-
-.sapMNumericContent {
-    font-size: 1.75rem !important;
-    font-weight: 700 !important;
-    color: #0a6ed1 !important;
-}
-
-.sapMNumericContent .sapMNumericContentValue {
-    font-size: 1.75rem !important;
-}
-
-/* Charts Section */
-.chartsRow {
-    padding: 32px 32px !important;
-    gap: 24px;
     margin-bottom: 24px;
 }
 
-.chartContainer {
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px !important;
-    padding: 24px !important;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
+.pageHeader .sapMTitle {
+    color: #1a365d !important;
+    font-weight: 700 !important;
+    font-size: 1.5rem !important;
+    margin-bottom: 8px !important;
 }
 
-.chartContainer:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+.pageHeader .sapMText {
+    color: #6b7280 !important;
+    font-size: 0.95rem !important;
+}
+
+/* ===== METRICS SECTION ===== */
+.metricsSection {
+    margin-bottom: 32px;
+}
+
+.metricsGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: space-between;
+}
+
+.metricCard {
+    flex: 0 1 calc(33.333% - 11px);
+    background: #ffffff;
+    border: 1px solid #e8ecf1;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+}
+
+.metricCard:hover {
+    box-shadow: 0 8px 24px rgba(44, 90, 160, 0.12);
+    border-color: #2c5aa0;
+    transform: translateY(-4px);
+}
+
+.metricHeader {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.metricIcon {
+    font-size: 1.5rem;
+    color: #2c5aa0;
+    opacity: 0.8;
+}
+
+.metricTitle {
+    color: #6b7280 !important;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    margin: 0 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.metricValue {
+    font-size: 2rem !important;
+    font-weight: 700 !important;
+    color: #1a365d !important;
+    line-height: 1 !important;
+    margin: 8px 0 12px 0 !important;
+}
+
+.metricLabel {
+    color: #9ca3af !important;
+    font-size: 0.85rem !important;
+    font-weight: 400 !important;
+}
+
+/* Responsive metrics */
+@media (max-width: 1400px) {
+    .metricCard {
+        flex: 0 1 calc(50% - 8px);
+    }
+}
+
+@media (max-width: 768px) {
+    .metricCard {
+        flex: 0 1 100%;
+    }
+}
+
+/* ===== CHARTS SECTION ===== */
+.chartsSection {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.chartsGrid {
+    display: flex;
+    gap: 24px;
+    width: 100%;
+}
+
+.chartBox {
+    background: #ffffff;
+    border: 1px solid #e8ecf1;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.chartBox:hover {
+    box-shadow: 0 8px 24px rgba(44, 90, 160, 0.12);
+    border-color: #2c5aa0;
+}
+
+.chartHeader {
+    margin-bottom: 20px;
 }
 
 .chartTitle {
-    color: #1a3a52 !important;
+    color: #1a365d !important;
     font-weight: 700 !important;
-    font-size: 1.25rem !important;
-    margin-bottom: 16px !important;
+    font-size: 1.125rem !important;
+    margin: 0 0 4px 0 !important;
+}
+
+.chartDescription {
+    color: #9ca3af !important;
+    font-size: 0.85rem !important;
+    margin: 0 !important;
 }
 
 .vizChart {
     border-radius: 8px !important;
 }
 
-/* Visualization Chart Styling */
-.sapVizFrame {
-    border-radius: 8px !important;
+/* Responsive charts */
+@media (max-width: 1200px) {
+    .chartsGrid {
+        flex-direction: column;
+    }
+    
+    .chartBox {
+        width: 100% !important;
+    }
 }
 
-.sapVizFrame .sapVizChartSvg {
-    border-radius: 8px !important;
-}
-
-/* Buttons */
-.sapMBtn {
-    border-radius: 6px !important;
-    font-weight: 500 !important;
-    font-size: 1rem !important;
-    transition: all 0.2s ease;
-}
-
-/* Emphasized Button - Blue */
-.sapMBtnEmphasized {
-    background: #0a6ed1 !important;
-    color: #ffffff !important;
-    box-shadow: 0 2px 4px rgba(10, 110, 209, 0.25);
-}
-
-.sapMBtnEmphasized:active {
-    box-shadow: 0 4px 8px rgba(10, 110, 209, 0.35);
-}
-
-/* Negative Button - RED */
-.sapMBtnNegative {
-    background: #c41e3a !important;
-    color: #ffffff !important;
-    box-shadow: 0 2px 4px rgba(196, 30, 58, 0.25);
-}
-
-.sapMBtnNegative:active {
-    box-shadow: 0 4px 8px rgba(196, 30, 58, 0.35);
-}
-
-/* Text and Typography */
+/* ===== TYPOGRAPHY ===== */
 .sapMTitle {
-    color: #1a3a52 !important;
+    color: #1a365d !important;
     font-weight: 700 !important;
-    margin-bottom: 16px !important;
 }
 
 .sapMText {
-    color: #374151 !important;
-    font-size: 1rem !important;
+    color: #6b7280 !important;
+    font-size: 0.95rem !important;
 }
 
-/* List Styling */
-.sapMList {
-    background: transparent !important;
-}
-
-.sapMListTblHeaderCell {
-    background: #f5f7fa !important;
-    color: #1a3a52 !important;
-    font-weight: 700 !important;
-    font-size: 1rem !important;
-    border-bottom: 2px solid #d0d5e0 !important;
-    padding: 12px 16px !important;
-}
-
-.sapMListTblRow {
-    transition: background 0.15s ease;
-}
-
-.sapMListTblRow:nth-child(even) {
-    background: #fafbfc;
-}
-
-.sapMListTblCell {
-    border-color: #e5e7eb !important;
-    color: #374151 !important;
-    font-size: 1rem !important;
-    padding: 12px 16px !important;
-}
-
-/* Panel */
-.sapMPanel {
-    border-radius: 12px !important;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
-    margin-bottom: 24px !important;
-    border: 1px solid #e5e7eb !important;
-}
-
-.sapMPanelExpandable .sapMPanelHdrBar {
-    background: #f5f7fa !important;
-    color: #1a3a52 !important;
-    border-bottom: 1px solid #d0d5e0 !important;
-    font-weight: 600 !important;
-    padding: 12px 16px !important;
-}
-
-/* Scrollbar Styling */
-.contentAreaMain::-webkit-scrollbar {
+/* ===== SCROLLBAR ===== */
+.contentContainer::-webkit-scrollbar {
     width: 8px;
 }
 
-.contentAreaMain::-webkit-scrollbar-track {
-    background: #f1f1f1;
+.contentContainer::-webkit-scrollbar-track {
+    background: transparent;
 }
 
-.contentAreaMain::-webkit-scrollbar-thumb {
+.contentContainer::-webkit-scrollbar-thumb {
     background: #d0d5e0;
     border-radius: 4px;
 }
 
-.contentAreaMain::-webkit-scrollbar-thumb:hover {
+.contentContainer::-webkit-scrollbar-thumb:hover {
     background: #a8aeb8;
 }
 
-.collapsibleSidebar::-webkit-scrollbar {
-    width: 6px;
-}
-
-.collapsibleSidebar::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.collapsibleSidebar::-webkit-scrollbar-thumb {
-    background: #d0d5e0;
-    border-radius: 3px;
-}
-
-.collapsibleSidebar::-webkit-scrollbar-thumb:hover {
-    background: #a8aeb8;
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .chartContainer {
-        width: 100% !important;
-    }
-    
-    .kpiTile {
-        width: 20% !important;
-        min-width: 140px;
-    }
-}
-
-@media (max-width: 768px) {
-    .portalTitle {
-        font-size: 1.25rem !important;
-    }
-    
-    .dashboardTitle {
-        font-size: 1.5rem !important;
-    }
-    
-    .kpiTile {
-        width: 30% !important;
-        min-width: 120px;
-    }
-    
-    .chartContainer {
-        width: 100% !important;
-    }
-    
-    .collapsibleSidebar {
-        position: absolute;
-        left: 0;
-        top: 0;
-        height: 100vh;
-        z-index: 1000;
-    }
-}
-
-/* Animation */
-@keyframes slideIn {
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
     from {
         opacity: 0;
         transform: translateY(10px);
@@ -426,33 +335,145 @@ body {
     }
 }
 
-.contentPage {
-    animation: slideIn 0.3s ease;
+.pageContent {
+    animation: fadeIn 0.3s ease;
 }
 
-/* Generic Tile Content Styling */
-.sapMGenericTile {
-    margin: 8px;
+.metricCard {
+    animation: fadeIn 0.4s ease;
 }
 
-.sapMTile {
-    border-radius: 12px !important;
+.chartBox {
+    animation: fadeIn 0.5s ease;
 }
 
-.sapMTileContent {
-    padding: 16px !important;
+/* ===== UTILITY CLASSES ===== */
+.flexCenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Numeric Content */
-.sapMNumericContent {
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1024px) {
+    .pageContent {
+        padding: 24px;
+    }
+    
+    .metricCard {
+        flex: 0 1 calc(50% - 8px);
+    }
+}
+
+@media (max-width: 768px) {
+    .pageContent {
+        padding: 16px;
+    }
+    
+    .navBarContent {
+        padding: 0 12px;
+        gap: 8px;
+    }
+    
+    .navTitle {
+        font-size: 1.125rem !important;
+    }
+    
+    .metricCard {
+        flex: 0 1 100%;
+    }
+    
+    .chartsGrid {
+        flex-direction: column;
+    }
+    
+    .chartBox {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .pageContent {
+        padding: 12px;
+    }
+    
+    .metricHeader {
+        gap: 8px;
+    }
+    
+    .metricValue {
+        font-size: 1.5rem !important;
+    }
+    
+    .navTitle {
+        font-size: 1rem !important;
+    }
+}
+
+/* ===== OBJECT NUMBER STYLING ===== */
+.sapMObjectNumber {
+    text-align: left !important;
+}
+
+.sapMObjectNumberText {
+    color: #1a365d !important;
     font-weight: 700 !important;
 }
 
-.sapMNumericContent .sapMNumericContentValue {
-    color: #0a6ed1 !important;
-    font-size: 1.75rem !important;
+/* ===== ICON STYLING ===== */
+.sapUiIcon {
+    transition: all 0.2s ease;
 }
 
-.sapMNumericContent .sapMNumericContentIconImage {
-    color: #0a6ed1 !important;
+/* ===== TOOLBAR AND BUTTON STYLING ===== */
+.sapMToolbar {
+    background: transparent !important;
+    border: none !important;
+}
+
+.sapMBtn {
+    border-radius: 8px !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease;
+}
+
+.sapMBtn:focus {
+    outline: 2px solid #2c5aa0;
+    outline-offset: 2px;
+}
+
+/* ===== LIST STYLING ===== */
+.sapMList {
+    background: transparent !important;
+}
+
+.sapMListTblHeaderCell {
+    background: #f5f7fa !important;
+    color: #1a365d !important;
+    font-weight: 700 !important;
+    border-bottom: 2px solid #e8ecf1 !important;
+}
+
+.sapMListTblRow {
+    transition: background 0.15s ease;
+}
+
+.sapMListTblRow:hover {
+    background: #f9fafb !important;
+}
+
+.sapMListTblCell {
+    color: #2c3e50 !important;
+    border-color: #f0f1f3 !important;
+}
+
+/* ===== HBOX AND VBOX ADJUSTMENTS ===== */
+.sapMHBox.chartsGrid {
+    display: flex;
+    width: 100%;
+}
+
+.sapMVBox.chartBox {
+    display: flex;
+    flex-direction: column;
 }
