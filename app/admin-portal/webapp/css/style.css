@@ -517,6 +517,81 @@ body {
     border-color: #f0f1f3 !important;
 }
 
+/* ===== DIALOG STYLING ===== */
+.sapMDialog {
+    border-radius: 16px !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3) !important;
+}
+
+.sapMDialogTitle {
+    font-size: 1.375rem !important;
+    font-weight: 700 !important;
+    color: #1a365d !important;
+    padding: 24px 24px 16px 24px !important;
+}
+
+.sapMDialogContent {
+    padding: 24px !important;
+    background: #ffffff !important;
+}
+
+.formContent {
+    padding: 0 !important;
+}
+
+.formLabel {
+    margin-top: 12px !important;
+    color: #1a365d !important;
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+}
+
+.sapMLabel {
+    color: #2c3e50 !important;
+    font-weight: 500 !important;
+    margin-bottom: 8px !important;
+}
+
+.sapMInput,
+.sapMSelect,
+.sapMTextArea {
+    border-radius: 8px !important;
+    border: 1px solid #e8ecf1 !important;
+}
+
+.sapMInput:focus,
+.sapMSelect:focus,
+.sapMTextArea:focus {
+    border-color: #2c5aa0 !important;
+    box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.1) !important;
+}
+
+.sapMInputBaseInner {
+    padding: 10px 12px !important;
+}
+
+.sapMSelect .sapMSelectLabel {
+    padding: 10px 12px !important;
+}
+
+.sapMTextArea .sapMTextAreaInner {
+    padding: 10px 12px !important;
+    border-radius: 8px !important;
+}
+
+.sapMDialogFooter {
+    padding: 16px 24px 24px 24px !important;
+    background: #f8f9fa !important;
+    border-top: 1px solid #e8ecf1 !important;
+    display: flex !important;
+    justify-content: flex-end !important;
+    gap: 12px !important;
+}
+
+.sapMDialogFooter .sapMBtn {
+    min-width: 100px;
+}
+
 /* ===== HBOX AND VBOX ADJUSTMENTS ===== */
 .sapMHBox.chartsGrid {
     display: flex;

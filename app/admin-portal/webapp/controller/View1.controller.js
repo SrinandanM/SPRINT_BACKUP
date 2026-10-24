@@ -169,6 +169,173 @@ sap.ui.define([
                 console.error("Error loading requests:", error);
                 this.getView().setModel(new JSONModel([]), "requests");
             }
+        },
+
+        /* ===== PROFESSIONAL DIALOGS ===== */
+
+        onCreateAsset: function () {
+            if (!this._assetDialog) {
+                this._assetDialog = new sap.m.Dialog({
+                    title: "Create New Asset",
+                    type: "Standard",
+                    resizable: true,
+                    draggable: true,
+                    contentWidth: "500px",
+                    contentHeight: "600px",
+                    content: [
+                        new sap.m.VBox({
+                            items: [
+                                new sap.m.Label({ text: "Asset Tag", required: true }),
+                                new sap.m.Input({ id: "assetTag", placeholder: "Enter asset tag" }),
+                                
+                                new sap.m.Label({ text: "Model", required: true, class: "formLabel" }),
+                                new sap.m.Input({ id: "assetModel", placeholder: "Enter model name" }),
+                                
+                                new sap.m.Label({ text: "Serial Number", required: true, class: "formLabel" }),
+                                new sap.m.Input({ id: "serialNumber", placeholder: "Enter serial number" }),
+                                
+                                new sap.m.Label({ text: "Category", required: true, class: "formLabel" }),
+                                new sap.m.Select({
+                                    id: "assetCategory",
+                                    items: [
+                                        new sap.ui.core.Item({ key: "laptop", text: "Laptop" }),
+                                        new sap.ui.core.Item({ key: "desktop", text: "Desktop" }),
+                                        new sap.ui.core.Item({ key: "tablet", text: "Tablet" }),
+                                        new sap.ui.core.Item({ key: "phone", text: "Phone" })
+                                    ]
+                                }),
+                                
+                                new sap.m.Label({ text: "Status", required: true, class: "formLabel" }),
+                                new sap.m.Select({
+                                    id: "assetStatus",
+                                    items: [
+                                        new sap.ui.core.Item({ key: "available", text: "Available" }),
+                                        new sap.ui.core.Item({ key: "assigned", text: "Assigned" }),
+                                        new sap.ui.core.Item({ key: "maintenance", text: "Maintenance" })
+                                    ]
+                                }),
+                                
+                                new sap.m.Label({ text: "Remarks", class: "formLabel" }),
+                                new sap.m.TextArea({
+                                    id: "assetRemarks",
+                                    rows: 4,
+                                    placeholder: "Enter remarks (optional)"
+                                })
+                            ],
+                            spacing: "12px",
+                            class: "formContent"
+                        })
+                    ],
+                    beginButton: new sap.m.Button({
+                        text: "Create",
+                        type: "Emphasized",
+                        press: () => {
+                            this._saveAsset();
+                            this._assetDialog.close();
+                        }
+                    }),
+                    endButton: new sap.m.Button({
+                        text: "Cancel",
+                        press: () => this._assetDialog.close()
+                    })
+                });
+                this.getView().addDependent(this._assetDialog);
+            }
+            this._assetDialog.open();
+        },
+
+        _saveAsset: function () {
+            const assetData = {
+                assetTag: sap.ui.getCore().byId("assetTag").getValue(),
+                model: sap.ui.getCore().byId("assetModel").getValue(),
+                serialNumber: sap.ui.getCore().byId("serialNumber").getValue(),
+                categoryId: sap.ui.getCore().byId("assetCategory").getSelectedKey(),
+                status: sap.ui.getCore().byId("assetStatus").getSelectedKey(),
+                remarks: sap.ui.getCore().byId("assetRemarks").getValue()
+            };
+            console.log("Creating asset:", assetData);
+            sap.m.MessageToast.show("Asset created successfully!");
+        },
+
+        onCreateEmployee: function () {
+            if (!this._employeeDialog) {
+                this._employeeDialog = new sap.m.Dialog({
+                    title: "Create New Employee",
+                    type: "Standard",
+                    resizable: true,
+                    draggable: true,
+                    contentWidth: "500px",
+                    contentHeight: "650px",
+                    content: [
+                        new sap.m.VBox({
+                            items: [
+                                new sap.m.Label({ text: "Employee Number", required: true }),
+                                new sap.m.Input({ id: "empNumber", placeholder: "Enter employee number" }),
+                                
+                                new sap.m.Label({ text: "Full Name", required: true, class: "formLabel" }),
+                                new sap.m.Input({ id: "empName", placeholder: "Enter full name" }),
+                                
+                                new sap.m.Label({ text: "Email", required: true, class: "formLabel" }),
+                                new sap.m.Input({ id: "empEmail", placeholder: "Enter email address", type: "Email" }),
+                                
+                                new sap.m.Label({ text: "Department", required: true, class: "formLabel" }),
+                                new sap.m.Select({
+                                    id: "empDepartment",
+                                    items: [
+                                        new sap.ui.core.Item({ key: "it", text: "Information Technology" }),
+                                        new sap.ui.core.Item({ key: "hr", text: "Human Resources" }),
+                                        new sap.ui.core.Item({ key: "finance", text: "Finance" }),
+                                        new sap.ui.core.Item({ key: "ops", text: "Operations" })
+                                    ]
+                                }),
+                                
+                                new sap.m.Label({ text: "Role", required: true, class: "formLabel" }),
+                                new sap.m.Input({ id: "empRole", placeholder: "Enter job title" }),
+                                
+                                new sap.m.Label({ text: "Phone", class: "formLabel" }),
+                                new sap.m.Input({ id: "empPhone", placeholder: "Enter phone number" }),
+                                
+                                new sap.m.Label({ text: "Notes", class: "formLabel" }),
+                                new sap.m.TextArea({
+                                    id: "empNotes",
+                                    rows: 3,
+                                    placeholder: "Enter notes (optional)"
+                                })
+                            ],
+                            spacing: "12px",
+                            class: "formContent"
+                        })
+                    ],
+                    beginButton: new sap.m.Button({
+                        text: "Create",
+                        type: "Emphasized",
+                        press: () => {
+                            this._saveEmployee();
+                            this._employeeDialog.close();
+                        }
+                    }),
+                    endButton: new sap.m.Button({
+                        text: "Cancel",
+                        press: () => this._employeeDialog.close()
+                    })
+                });
+                this.getView().addDependent(this._employeeDialog);
+            }
+            this._employeeDialog.open();
+        },
+
+        _saveEmployee: function () {
+            const empData = {
+                employeeNumber: sap.ui.getCore().byId("empNumber").getValue(),
+                fullName: sap.ui.getCore().byId("empName").getValue(),
+                email: sap.ui.getCore().byId("empEmail").getValue(),
+                departmentId: sap.ui.getCore().byId("empDepartment").getSelectedKey(),
+                role: sap.ui.getCore().byId("empRole").getValue(),
+                phone: sap.ui.getCore().byId("empPhone").getValue(),
+                notes: sap.ui.getCore().byId("empNotes").getValue()
+            };
+            console.log("Creating employee:", empData);
+            sap.m.MessageToast.show("Employee created successfully!");
         }
 
     });
