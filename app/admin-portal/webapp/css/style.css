@@ -602,3 +602,32 @@ body {
     display: flex;
     flex-direction: column;
 }
+
+/* ===== REPORTS PAGE ===== */
+.reportSection {
+    padding: 0;
+}
+
+.reportCard {
+    background: #ffffff;
+    border: 1px solid #e8ecf1;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reportCard:hover {
+    box-shadow: 0 8px 24px rgba(44, 90, 160, 0.12);
+    border-color: #2c5aa0;
+    transform: translateY(-2px);
+}
+
+.reportCard .sapMTitle {
+    margin-bottom: 8px !important;
+}
+
+.reportCard .sapMText {
+    margin-bottom: 12px !important;
+    color: #6b7280 !important;
+}

@@ -319,6 +319,7 @@
                                 <SearchField width="300px" placeholder="Search assets..." class="searchField" />
                                 <ToolbarSpacer />
                                 <Button text="Create" type="Emphasized" icon="sap-icon://add" press=".onCreateAsset" />
+                                <Button text="Assign" type="Success" icon="sap-icon://assigned-task" press=".onAssignAsset" />
                                 <Button text="Delete" type="Negative" icon="sap-icon://delete" />
                             </Toolbar>
                             <Table width="100%" growing="true" sticky="ColumnHeaders" items="{/assets}">
@@ -406,6 +407,33 @@
                                 <Button text="Create" type="Emphasized" icon="sap-icon://add" press=".onCreateEmployee" />
                                 <Button text="Delete" type="Negative" icon="sap-icon://delete" />
                             </Toolbar>
+                            <Table width="100%" growing="true" sticky="ColumnHeaders" items="{/employees}">
+                                <columns>
+                                    <Column width="130px"><Title text="Employee ID" /></Column>
+                                    <Column width="150px"><Title text="Full Name" /></Column>
+                                    <Column width="180px"><Title text="Email" /></Column>
+                                    <Column width="130px"><Title text="Department" /></Column>
+                                    <Column width="120px"><Title text="Role" /></Column>
+                                    <Column width="130px"><Title text="Phone" /></Column>
+                                    <Column width="100px"><Title text="Actions" /></Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem>
+                                        <cells>
+                                            <Text text="{/employees>employeeNumber}" />
+                                            <Text text="{/employees>fullName}" />
+                                            <Text text="{/employees>email}" />
+                                            <Text text="{/employees>departmentName}" />
+                                            <Text text="{/employees>role}" />
+                                            <Text text="{/employees>phone}" />
+                                            <HBox gap="4px">
+                                                <Button icon="sap-icon://edit" type="Transparent" tooltip="Edit" />
+                                                <Button icon="sap-icon://delete" type="Transparent" tooltip="Delete" />
+                                            </HBox>
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
                         </VBox>
                     </VBox>
 
@@ -414,12 +442,72 @@
                             <Title text="Departments" level="H2" titleStyle="H2" />
                             <Text text="Manage department records" />
                         </VBox>
+                        <VBox class="contentBox">
+                            <Toolbar class="tableToolbar">
+                                <SearchField width="300px" placeholder="Search departments..." class="searchField" />
+                                <ToolbarSpacer />
+                                <Button text="Create" type="Emphasized" icon="sap-icon://add" />
+                                <Button text="Delete" type="Negative" icon="sap-icon://delete" />
+                            </Toolbar>
+                            <Table width="100%" growing="true" sticky="ColumnHeaders" items="{/departments}">
+                                <columns>
+                                    <Column width="150px"><Title text="Department Name" /></Column>
+                                    <Column width="200px"><Title text="Description" /></Column>
+                                    <Column width="130px"><Title text="Manager" /></Column>
+                                    <Column width="100px"><Title text="Actions" /></Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem>
+                                        <cells>
+                                            <Text text="{/departments>departmentName}" />
+                                            <Text text="{/departments>description}" />
+                                            <Text text="{/departments>managerName}" />
+                                            <HBox gap="4px">
+                                                <Button icon="sap-icon://edit" type="Transparent" tooltip="Edit" />
+                                                <Button icon="sap-icon://delete" type="Transparent" tooltip="Delete" />
+                                            </HBox>
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </VBox>
                     </VBox>
 
                     <VBox id="vendorsContainer" visible="false" width="100%" class="pageContent">
                         <VBox class="pageHeader">
                             <Title text="Vendors" level="H2" titleStyle="H2" />
                             <Text text="Manage vendor information" />
+                        </VBox>
+                        <VBox class="contentBox">
+                            <Toolbar class="tableToolbar">
+                                <SearchField width="300px" placeholder="Search vendors..." class="searchField" />
+                                <ToolbarSpacer />
+                                <Button text="Create" type="Emphasized" icon="sap-icon://add" />
+                                <Button text="Delete" type="Negative" icon="sap-icon://delete" />
+                            </Toolbar>
+                            <Table width="100%" growing="true" sticky="ColumnHeaders" items="{/vendors}">
+                                <columns>
+                                    <Column width="150px"><Title text="Vendor Name" /></Column>
+                                    <Column width="150px"><Title text="Contact Person" /></Column>
+                                    <Column width="150px"><Title text="Email" /></Column>
+                                    <Column width="120px"><Title text="Phone" /></Column>
+                                    <Column width="100px"><Title text="Actions" /></Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem>
+                                        <cells>
+                                            <Text text="{/vendors>vendorName}" />
+                                            <Text text="{/vendors>contactPerson}" />
+                                            <Text text="{/vendors>email}" />
+                                            <Text text="{/vendors>phone}" />
+                                            <HBox gap="4px">
+                                                <Button icon="sap-icon://edit" type="Transparent" tooltip="Edit" />
+                                                <Button icon="sap-icon://delete" type="Transparent" tooltip="Delete" />
+                                            </HBox>
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
                         </VBox>
                     </VBox>
 
@@ -428,12 +516,84 @@
                             <Title text="Categories" level="H2" titleStyle="H2" />
                             <Text text="Manage asset categories" />
                         </VBox>
+                        <VBox class="contentBox">
+                            <Toolbar class="tableToolbar">
+                                <SearchField width="300px" placeholder="Search categories..." class="searchField" />
+                                <ToolbarSpacer />
+                                <Button text="Create" type="Emphasized" icon="sap-icon://add" />
+                                <Button text="Delete" type="Negative" icon="sap-icon://delete" />
+                            </Toolbar>
+                            <Table width="100%" growing="true" sticky="ColumnHeaders" items="{/categories}">
+                                <columns>
+                                    <Column width="150px"><Title text="Category Name" /></Column>
+                                    <Column width="300px"><Title text="Description" /></Column>
+                                    <Column width="100px"><Title text="Asset Count" /></Column>
+                                    <Column width="100px"><Title text="Actions" /></Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem>
+                                        <cells>
+                                            <Text text="{/categories>categoryName}" />
+                                            <Text text="{/categories>description}" />
+                                            <Text text="{/categories>assetCount}" />
+                                            <HBox gap="4px">
+                                                <Button icon="sap-icon://edit" type="Transparent" tooltip="Edit" />
+                                                <Button icon="sap-icon://delete" type="Transparent" tooltip="Delete" />
+                                            </HBox>
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </VBox>
                     </VBox>
 
                     <VBox id="reportsContainer" visible="false" width="100%" class="pageContent">
                         <VBox class="pageHeader">
                             <Title text="Reports" level="H2" titleStyle="H2" />
                             <Text text="Generate and view asset reports" />
+                        </VBox>
+                        <VBox class="contentBox">
+                            <VBox spacing="16px" width="100%" class="reportSection">
+                                <VBox class="reportCard">
+                                    <Title text="Asset Inventory Report" level="H3" titleStyle="H3" />
+                                    <Text text="Complete list of all assets with details and status" />
+                                    <HBox spacing="8px">
+                                        <Button text="View" type="Emphasized" icon="sap-icon://show" />
+                                        <Button text="Download PDF" icon="sap-icon://pdf-attachment" />
+                                        <Button text="Export Excel" icon="sap-icon://excel-attachment" />
+                                    </HBox>
+                                </VBox>
+
+                                <VBox class="reportCard">
+                                    <Title text="Asset Status Report" level="H3" titleStyle="H3" />
+                                    <Text text="Summary of assets by status (Available, Assigned, Maintenance, Retired)" />
+                                    <HBox spacing="8px">
+                                        <Button text="View" type="Emphasized" icon="sap-icon://show" />
+                                        <Button text="Download PDF" icon="sap-icon://pdf-attachment" />
+                                        <Button text="Export Excel" icon="sap-icon://excel-attachment" />
+                                    </HBox>
+                                </VBox>
+
+                                <VBox class="reportCard">
+                                    <Title text="Department Assets Report" level="H3" titleStyle="H3" />
+                                    <Text text="Assets allocated to each department with assigned employees" />
+                                    <HBox spacing="8px">
+                                        <Button text="View" type="Emphasized" icon="sap-icon://show" />
+                                        <Button text="Download PDF" icon="sap-icon://pdf-attachment" />
+                                        <Button text="Export Excel" icon="sap-icon://excel-attachment" />
+                                    </HBox>
+                                </VBox>
+
+                                <VBox class="reportCard">
+                                    <Title text="Maintenance Schedule Report" level="H3" titleStyle="H3" />
+                                    <Text text="Assets due for maintenance with last service dates" />
+                                    <HBox spacing="8px">
+                                        <Button text="View" type="Emphasized" icon="sap-icon://show" />
+                                        <Button text="Download PDF" icon="sap-icon://pdf-attachment" />
+                                        <Button text="Export Excel" icon="sap-icon://excel-attachment" />
+                                    </HBox>
+                                </VBox>
+                            </VBox>
                         </VBox>
                     </VBox>
 

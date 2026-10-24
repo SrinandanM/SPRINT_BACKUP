@@ -44,6 +44,7 @@ sap.ui.define([
                     break;
                 case "Employees":
                     this.byId("employeesContainer").setVisible(true);
+                    this._loadEmployees();
                     break;
                 case "Departments":
                     this.byId("departmentsContainer").setVisible(true);
@@ -168,6 +169,20 @@ sap.ui.define([
             } catch (error) {
                 console.error("Error loading requests:", error);
                 this.getView().setModel(new JSONModel([]), "requests");
+            }
+        },
+
+        _loadEmployees: async function () {
+            try {
+                const response = await fetch("/odata/v4/asset-admin/Employees");
+                if (!response.ok) throw new Error("Failed to fetch employees");
+                
+                const data = await response.json();
+                const oModel = new JSONModel(data.value || []);
+                this.getView().setModel(oModel, "employees");
+            } catch (error) {
+                console.error("Error loading employees:", error);
+                this.getView().setModel(new JSONModel([]), "employees");
             }
         },
 
@@ -336,6 +351,130 @@ sap.ui.define([
             };
             console.log("Creating employee:", empData);
             sap.m.MessageToast.show("Employee created successfully!");
+        },
+
+        /* ===== ASSET ASSIGNMENT ===== */
+
+        onAssignAsset: function () {
+            if (!this._assignDialog) {
+                this._assignDialog = new sap.m.Dialog({
+                    title: "Assign Asset to Employee",
+                    type: "Standard",
+                    resizable: true,
+                    draggable: true,
+                    contentWidth: "500px",
+                    contentHeight: "400px",
+                    content: [
+                        new sap.m.VBox({
+                            items: [
+                                new sap.m.Label({ text: "Asset Tag", required: true }),
+                                new sap.m.Input({ 
+                                    id: "assignAssetTag", 
+                                    placeholder: "Enter or select asset tag",
+                                    showSuggestion: true
+                                }),
+                                
+                                new sap.m.Label({ text: "Employee", required: true, class: "formLabel" }),
+                                new sap.m.Select({
+                                    id: "assignEmployee",
+                                    items: {
+                                        path: "/employees",
+                                        template: new sap.ui.core.Item({
+                                            key: "{/employees>ID}",
+                                            text: "{/employees>fullName}"
+                                        })
+                                    }
+                                }),
+                                
+                                new sap.m.Label({ text: "Assignment Date", required: true, class: "formLabel" }),
+                                new sap.m.DatePicker({
+                                    id: "assignDate",
+                                    placeholder: "Select date"
+                                }),
+                                
+                                new sap.m.Label({ text: "Notes", class: "formLabel" }),
+                                new sap.m.TextArea({
+                                    id: "assignNotes",
+                                    rows: 3,
+                                    placeholder: "Enter assignment notes (optional)"
+                                })
+                            ],
+                            spacing: "12px",
+                            class: "formContent"
+                        })
+                    ],
+                    beginButton: new sap.m.Button({
+                        text: "Assign",
+                        type: "Success",
+                        press: () => {
+                            this._saveAssignment();
+                            this._assignDialog.close();
+                        }
+                    }),
+                    endButton: new sap.m.Button({
+                        text: "Cancel",
+                        press: () => this._assignDialog.close()
+                    })
+                });
+                this.getView().addDependent(this._assignDialog);
+            }
+            
+            // Load employees for dropdown
+            this._loadEmployeesForAssignment();
+            
+            this._assignDialog.open();
+        },
+
+        _loadEmployeesForAssignment: async function () {
+            try {
+                const response = await fetch("/odata/v4/asset-admin/Employees");
+                if (!response.ok) throw new Error("Failed to fetch employees");
+                
+                const data = await response.json();
+                
+                // Get or create the default model
+                let oModel = this.getView().getModel();
+                if (!oModel) {
+                    oModel = new JSONModel();
+                    this.getView().setModel(oModel);
+                }
+                
+                // Update the model data
+                const oData = oModel.getData() || {};
+                oData.employees = data.value || [];
+                oModel.setData(oData);
+            } catch (error) {
+                console.error("Error loading employees:", error);
+                sap.m.MessageToast.show("Failed to load employees");
+            }
+        },
+
+        _saveAssignment: function () {
+            const assetTag = sap.ui.getCore().byId("assignAssetTag").getValue();
+            const employeeID = sap.ui.getCore().byId("assignEmployee").getSelectedKey();
+            const assignDate = sap.ui.getCore().byId("assignDate").getValue();
+            const notes = sap.ui.getCore().byId("assignNotes").getValue();
+
+            if (!assetTag || !employeeID || !assignDate) {
+                sap.m.MessageToast.show("Please fill in all required fields");
+                return;
+            }
+
+            const assignmentData = {
+                assetTag: assetTag,
+                employeeID: employeeID,
+                assignedDate: assignDate,
+                notes: notes
+            };
+
+            console.log("Assigning asset:", assignmentData);
+            sap.m.MessageToast.show("Asset assigned successfully!");
+            
+            // Clear form
+            sap.ui.getCore().byId("assignAssetTag").setValue("");
+            sap.ui.getCore().byId("assignEmployee").setSelectedKey("");
+            sap.ui.getCore().byId("assignDate").setValue("");
+            sap.ui.getCore().byId("assignNotes").setValue("");
         }
 
     });
