@@ -125,7 +125,7 @@
                         class="contentPage dashboardPage">
 
                         <!-- HEADER -->
-                        <VBox class="dashboardHeader" class="pageHeader">
+                        <VBox class="dashboardHeader pageHeader">
                             <Title
                                 text="Enterprise Asset Management Dashboard"
                                 level="H1"
