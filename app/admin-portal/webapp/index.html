@@ -10,6 +10,23 @@
             height: 100%;
         }
     </style>
+    <!-- Global error handler -->
+    <script>
+        console.log("=== ADMIN PORTAL LOADING ===");
+        console.log("Script execution started at:", new Date().toISOString());
+        
+        window.addEventListener('error', function(event) {
+            console.error("GLOBAL ERROR:", event.message);
+            console.error("File:", event.filename);
+            console.error("Line:", event.lineno);
+            console.error("Column:", event.colno);
+            console.error("Stack:", event.error?.stack);
+        });
+        
+        window.addEventListener('unhandledrejection', function(event) {
+            console.error("UNHANDLED PROMISE REJECTION:", event.reason);
+        });
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -24,7 +41,8 @@
         data-sap-ui-compat-version="edge"
         data-sap-ui-async="true"
         data-sap-ui-frame-options="trusted"
-    ></script>
+        onload="console.log('=== SAP UI5 BOOTSTRAP COMPLETE ===')">
+    </script>
 </head>
 <body class="sapUiBody sapUiSizeCompact" id="content">
     <div
