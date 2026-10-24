@@ -10,12 +10,11 @@ body {
     background: #ffffff !important;
 }
 
-/* Modern Sidebar - Professional Light Gray */
+/* Modern Sidebar */
 .modernSidebar {
-    background: linear-gradient(180deg, #e8ecf1 0%, #f5f7fa 100%) !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    border-right: 1px solid #d0d5e0;
-    border-radius: 0;
+    background: linear-gradient(180deg, #1e3c72 0%, #2a5298 100%) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    border-radius: 0 12px 12px 0;
 }
 
 .modernSidebar .sapMList {
@@ -23,45 +22,30 @@ body {
 }
 
 .modernSidebar .sidebarItem {
-    color: #374151 !important;
-    border-bottom: 1px solid #e5e7eb !important;
-    padding: 14px 16px !important;
-    transition: all 0.2s ease;
+    color: #ffffff !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
 .modernSidebar .sidebarItem:hover {
-    background: linear-gradient(90deg, #0a6ed1 0%, #0876a3 100%) !important;
-    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.1) !important;
 }
 
 .modernSidebar .sidebarItem.sapMLIBSelected {
-    background: linear-gradient(90deg, #0a6ed1 0%, #0876a3 100%) !important;
-    color: #ffffff !important;
-    border-left: 4px solid #0a6ed1 !important;
-    padding-left: 12px !important;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.25) !important;
+    border-left: 4px solid #00b4f0 !important;
+    padding-left: 16px !important;
 }
 
 .modernSidebar .sapMSLITitleOnly {
-    color: inherit !important;
-    font-weight: 500 !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
     font-size: 0.95rem !important;
 }
 
-.modernSidebar .sidebarItem.sapMLIBSelected .sapMSLITitleOnly {
-    color: #ffffff !important;
-    font-weight: 600 !important;
-}
-
 .modernSidebar .sapUiIcon {
-    color: #0a6ed1 !important;
-    font-size: 1.2rem !important;
+    color: #00b4f0 !important;
+    font-size: 1.3rem !important;
     margin-right: 12px !important;
-}
-
-.modernSidebar .sidebarItem:hover .sapUiIcon,
-.modernSidebar .sidebarItem.sapMLIBSelected .sapUiIcon {
-    color: #ffffff !important;
 }
 
 /* Modern Content Area */
@@ -72,115 +56,40 @@ body {
 
 /* Modern Toolbar */
 .modernToolbar {
-    background: #ffffff !important;
-    border: 1px solid #e5e7eb !important;
-    border-radius: 6px;
+    background: linear-gradient(90deg, #f5f7fa 0%, #e9ecef 100%) !important;
+    border: 1px solid #e0e0e0 !important;
+    border-radius: 8px;
     padding: 12px 16px !important;
     margin-bottom: 24px !important;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-/* Professional Button Styling */
-.sapMBtn {
+.modernToolbar .sapMBtn {
     border-radius: 6px !important;
     font-weight: 500 !important;
-    transition: all 0.2s ease !important;
-    border: none !important;
-}
-
-/* Emphasized Buttons (Primary) */
-.sapMBtnEmphasized {
-    background: linear-gradient(135deg, #0a6ed1 0%, #0876a3 100%) !important;
-    color: #ffffff !important;
-    box-shadow: 0 2px 6px rgba(10, 110, 209, 0.25) !important;
-}
-
-.sapMBtnEmphasized:hover {
-    background: linear-gradient(135deg, #0876a3 0%, #06598d 100%) !important;
-    box-shadow: 0 4px 10px rgba(10, 110, 209, 0.35) !important;
-    transform: translateY(-1px) !important;
-}
-
-.sapMBtnEmphasized:active {
-    transform: translateY(0) !important;
-    box-shadow: 0 1px 3px rgba(10, 110, 209, 0.2) !important;
-}
-
-/* Accept/Success Buttons (Approve) */
-.sapMBtnSuccess,
-.sapMBtnAccept {
-    background: linear-gradient(135deg, #107e3e 0%, #0e5f2e 100%) !important;
-    color: #ffffff !important;
-    box-shadow: 0 2px 6px rgba(16, 126, 62, 0.25) !important;
-}
-
-.sapMBtnSuccess:hover,
-.sapMBtnAccept:hover {
-    background: linear-gradient(135deg, #0e5f2e 0%, #0a4620 100%) !important;
-    box-shadow: 0 4px 10px rgba(16, 126, 62, 0.35) !important;
-    transform: translateY(-1px) !important;
-}
-
-/* Negative Buttons (Delete/Reject) */
-.sapMBtnNegative {
-    background: linear-gradient(135deg, #e74c3c 0%, #c73b2b 100%) !important;
-    color: #ffffff !important;
-    box-shadow: 0 2px 6px rgba(231, 76, 60, 0.25) !important;
-}
-
-.sapMBtnNegative:hover {
-    background: linear-gradient(135deg, #c73b2b 0%, #a02e21 100%) !important;
-    box-shadow: 0 4px 10px rgba(231, 76, 60, 0.35) !important;
-    transform: translateY(-1px) !important;
-}
-
-/* Attention Buttons (Maintenance/Warning) */
-.sapMBtnAttention {
-    background: linear-gradient(135deg, #e9730c 0%, #c95e0a 100%) !important;
-    color: #ffffff !important;
-    box-shadow: 0 2px 6px rgba(233, 115, 12, 0.25) !important;
-}
-
-.sapMBtnAttention:hover {
-    background: linear-gradient(135deg, #c95e0a 0%, #a84907 100%) !important;
-    box-shadow: 0 4px 10px rgba(233, 115, 12, 0.35) !important;
-    transform: translateY(-1px) !important;
-}
-
-/* Default Buttons (Secondary) */
-.sapMBtnDefault {
-    background: #f5f7fa !important;
-    color: #374151 !important;
-    border: 1px solid #d0d5e0 !important;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
-}
-
-.sapMBtnDefault:hover {
-    background: #eff2f7 !important;
-    border-color: #b3b8c5 !important;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08) !important;
-}
-
-/* Ghost Buttons (Cancel) */
-.sapMBtnGhost {
-    background: transparent !important;
-    color: #374151 !important;
-    border: 1px solid #d0d5e0 !important;
-}
-
-.sapMBtnGhost:hover {
-    background: #f5f7fa !important;
-    border-color: #b3b8c5 !important;
-}
-
-/* Button Spacing */
-.sapMToolbar .sapMBtn {
     margin-right: 8px !important;
-    min-width: 100px !important;
 }
 
-.sapMToolbar .sapMBtn:last-child {
-    margin-right: 0 !important;
+.modernToolbar .sapMBtnEmphasized {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.modernToolbar .sapMBtnEmphasized:hover {
+    box-shadow: 0 6px 16px rgba(102, 126, 234, 0.6);
+}
+
+.modernToolbar .sapMBtnNegative {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+}
+
+.modernToolbar .sapMBtnNegative:hover {
+    box-shadow: 0 4px 12px rgba(245, 87, 108, 0.4);
+}
+
+.modernToolbar .sapMBtnAttention {
+    background: linear-gradient(135deg, #ffa726 0%, #fb8c00 100%) !important;
 }
 
 /* Modern Search Field */
