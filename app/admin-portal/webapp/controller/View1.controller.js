@@ -29,16 +29,18 @@ sap.ui.define([
             this.byId("categoriesContainer").setVisible(false);
             this.byId("reportsContainer").setVisible(false);
 
-            // Show selected container
+            // Show selected container and load data
             switch (sTitle) {
                 case "Dashboard":
                     this.byId("dashboardContainer").setVisible(true);
                     break;
                 case "Assets":
                     this.byId("assetsContainer").setVisible(true);
+                    this._loadAssets();
                     break;
                 case "Requests":
                     this.byId("requestsContainer").setVisible(true);
+                    this._loadRequests();
                     break;
                 case "Employees":
                     this.byId("employeesContainer").setVisible(true);
@@ -138,6 +140,34 @@ sap.ui.define([
             } catch (error) {
                 console.error("Error loading department chart:", error);
                 this.getView().setModel(new JSONModel([]), "department");
+            }
+        },
+
+        _loadAssets: async function () {
+            try {
+                const response = await fetch("/odata/v4/asset-admin/Assets");
+                if (!response.ok) throw new Error("Failed to fetch assets");
+                
+                const data = await response.json();
+                const oModel = new JSONModel(data.value || []);
+                this.getView().setModel(oModel, "assets");
+            } catch (error) {
+                console.error("Error loading assets:", error);
+                this.getView().setModel(new JSONModel([]), "assets");
+            }
+        },
+
+        _loadRequests: async function () {
+            try {
+                const response = await fetch("/odata/v4/asset-admin/AssetRequests");
+                if (!response.ok) throw new Error("Failed to fetch requests");
+                
+                const data = await response.json();
+                const oModel = new JSONModel(data.value || []);
+                this.getView().setModel(oModel, "requests");
+            } catch (error) {
+                console.error("Error loading requests:", error);
+                this.getView().setModel(new JSONModel([]), "requests");
             }
         }
 

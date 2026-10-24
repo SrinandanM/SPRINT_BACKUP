@@ -314,12 +314,83 @@
                             <Title text="Asset Management" level="H2" titleStyle="H2" />
                             <Text text="Manage and track all assets in the system" />
                         </VBox>
+                        <VBox class="contentBox">
+                            <Toolbar class="tableToolbar">
+                                <SearchField width="300px" placeholder="Search assets..." class="searchField" />
+                                <ToolbarSpacer />
+                                <Button text="Create" type="Emphasized" icon="sap-icon://add" />
+                                <Button text="Delete" type="Negative" icon="sap-icon://delete" />
+                            </Toolbar>
+                            <Table width="100%" growing="true" sticky="ColumnHeaders" items="{/assets}">
+                                <columns>
+                                    <Column width="120px"><Title text="Asset Tag" /></Column>
+                                    <Column width="150px"><Title text="Model" /></Column>
+                                    <Column width="100px"><Title text="Status" /></Column>
+                                    <Column width="150px"><Title text="Serial Number" /></Column>
+                                    <Column width="130px"><Title text="Category" /></Column>
+                                    <Column width="120px"><Title text="Department" /></Column>
+                                    <Column width="100px"><Title text="Actions" /></Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem>
+                                        <cells>
+                                            <Text text="{/assets>assetTag}" />
+                                            <Text text="{/assets>model}" />
+                                            <ObjectStatus text="{/assets>status}" />
+                                            <Text text="{/assets>serialNumber}" />
+                                            <Text text="{/assets>categoryName}" />
+                                            <Text text="{/assets>departmentName}" />
+                                            <HBox gap="4px">
+                                                <Button icon="sap-icon://edit" type="Transparent" tooltip="Edit" />
+                                                <Button icon="sap-icon://delete" type="Transparent" tooltip="Delete" />
+                                            </HBox>
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </VBox>
                     </VBox>
 
                     <VBox id="requestsContainer" visible="false" width="100%" class="pageContent">
                         <VBox class="pageHeader">
                             <Title text="Asset Requests" level="H2" titleStyle="H2" />
                             <Text text="Manage asset requests and approvals" />
+                        </VBox>
+                        <VBox class="contentBox">
+                            <Toolbar class="tableToolbar">
+                                <SearchField width="300px" placeholder="Search requests..." class="searchField" />
+                                <ToolbarSpacer />
+                                <Button text="New Request" type="Emphasized" icon="sap-icon://add" />
+                                <Button text="Approve" type="Success" icon="sap-icon://accept" />
+                                <Button text="Reject" type="Negative" icon="sap-icon://decline" />
+                            </Toolbar>
+                            <Table width="100%" growing="true" sticky="ColumnHeaders" items="{/requests}">
+                                <columns>
+                                    <Column width="100px"><Title text="Request ID" /></Column>
+                                    <Column width="150px"><Title text="Employee" /></Column>
+                                    <Column width="130px"><Title text="Category" /></Column>
+                                    <Column width="150px"><Title text="Justification" /></Column>
+                                    <Column width="100px"><Title text="Status" /></Column>
+                                    <Column width="120px"><Title text="Created" /></Column>
+                                    <Column width="100px"><Title text="Actions" /></Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem>
+                                        <cells>
+                                            <Text text="{/requests>requestId}" />
+                                            <Text text="{/requests>employeeName}" />
+                                            <Text text="{/requests>categoryName}" />
+                                            <Text text="{/requests>justification}" />
+                                            <ObjectStatus text="{/requests>status}" />
+                                            <Text text="{/requests>createdDate}" />
+                                            <HBox gap="4px">
+                                                <Button icon="sap-icon://edit" type="Transparent" tooltip="Edit" />
+                                                <Button icon="sap-icon://delete" type="Transparent" tooltip="Delete" />
+                                            </HBox>
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
                         </VBox>
                     </VBox>
 
