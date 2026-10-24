@@ -12,6 +12,30 @@ sap.ui.define([
         {
 
             onInit: function () {
+                this._initializeDashboard();
+            },
+
+            _initializeDashboard: function () {
+                // Initialize dashboard model with default values
+                const oDashboardModel = new JSONModel({
+                    assignedAssets: 0,
+                    pendingRequests: 0,
+                    maintenanceAssets: 0,
+                    warrantyPercentage: 65,
+                    depreciationPercentage: 35,
+                    maintenanceMonths: 12,
+                    employeeName: "Loading...",
+                    employeeNumber: "",
+                    email: "",
+                    department: "",
+                    role: ""
+                });
+                this.getView().setModel(oDashboardModel);
+                
+                // Load actual data
+                this._loadAssets();
+                this._loadRequests();
+                this._loadProfile();
             },
             _loadAssets: async function () {
 
@@ -97,50 +121,60 @@ _loadProfile: async function () {
                 this.byId("profileContainer")
                     .setVisible(false);
 
-                this.byId("contentTitle")
-                    .setText(sTitle);
-
                 switch (sTitle) {
 
                     case "Dashboard":
-
-                        this.byId("contentText")
-                            .setText(
-                                "Employee Self Service Dashboard"
-                            );
 
                         this.byId("dashboardContainer")
                             .setVisible(true);
 
                         break;
 
-case "My Assets":
+                    case "My Assets":
 
-    this._loadAssets();
+                        this._loadAssets();
 
-    this.byId("assetsContainer")
-        .setVisible(true);
+                        this.byId("assetsContainer")
+                            .setVisible(true);
 
-    break;
+                        break;
 
-case "My Requests":
+                    case "My Requests":
 
-    this._loadRequests();
+                        this._loadRequests();
 
-    this.byId("requestsContainer")
-        .setVisible(true);
+                        this.byId("requestsContainer")
+                            .setVisible(true);
 
-    break;
+                        break;
 
-case "My Profile":
+                    case "My Profile":
 
-    this._loadProfile();
+                        this._loadProfile();
 
-    this.byId("profileContainer")
-        .setVisible(true);
+                        this.byId("profileContainer")
+                            .setVisible(true);
 
-    break;
+                        break;
                 }
+            },
+
+            formatStatusState: function (sStatus) {
+                if (!sStatus) return "None";
+                const status = sStatus.toLowerCase();
+                if (status === "active" || status === "available") return "Success";
+                if (status === "inactive" || status === "retired") return "Error";
+                if (status === "maintenance" || status === "in-maintenance") return "Warning";
+                return "None";
+            },
+
+            formatRequestStatus: function (sStatus) {
+                if (!sStatus) return "None";
+                const status = sStatus.toLowerCase();
+                if (status === "approved" || status === "accepted") return "Success";
+                if (status === "rejected" || status === "denied") return "Error";
+                if (status === "pending" || status === "awaiting-approval") return "Warning";
+                return "None";
             }
 
         }
