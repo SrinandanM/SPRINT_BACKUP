@@ -1,0 +1,35 @@
+{
+  "welcomeFile": "/index.html",
+  "logout": {
+    "logoutEndpoint": "/do/logout"
+  },
+  "routes": [
+    {
+      "source": "^/odata/(.*)$",
+      "destination": "backend",
+      "csrfProtection": true,
+      "authenticationType": "xsuaa"
+    },
+    {
+      "source": "^/assets/(.*)$",
+      "destination": "backend",
+      "authenticationType": "xsuaa"
+    },
+    {
+      "source": "^/catalog/(.*)$",
+      "destination": "backend",
+      "authenticationType": "xsuaa"
+    },
+    {
+      "source": "^/(.*)$",
+      "target": "$1",
+      "service": "html5-apps-repo-rt",
+      "authenticationType": "xsuaa"
+    }
+  ],
+  "authenticationMethod": "route",
+  "sessionTimeout": 15,
+  "compression": {
+    "enabled": true
+  }
+}
