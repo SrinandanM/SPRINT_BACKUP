@@ -46,11 +46,12 @@
     "flexEnabled": true,
     "dependencies": {
       "minUI5Version": "1.153.0",
-  "libs": {
-  "sap.m": {},
-  "sap.ui.core": {},
-  "sap.tnt": {}
-  }
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.tnt": {},
+        "sap.viz": {}
+      }
     },
     "contentDensities": {
       "compact": true,

@@ -50,7 +50,7 @@
                     id="sidebarContainer"
                     width="260px"
                     class="sidebar"
-                    visible="false">
+                    visible="true">
                     
                     <List
                         id="navigationMenu"

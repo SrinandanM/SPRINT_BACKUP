@@ -1,6 +1,6 @@
 sap.ui.define([
     "sap/ui/core/UIComponent",
-    "asset/lifecycle/portal/adminportal/model/models"
+    "asset.lifecycle.portal.adminportal.model.models"
 ], (UIComponent, models) => {
     "use strict";
 
