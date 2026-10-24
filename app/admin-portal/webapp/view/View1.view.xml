@@ -563,7 +563,6 @@
                                         <Button text="Export Excel" icon="sap-icon://excel-attachment" />
                                     </HBox>
                                 </VBox>
-
                                 <VBox class="reportCard">
                                     <Title text="Asset Status Report" level="H3" titleStyle="H3" />
                                     <Text text="Summary of assets by status (Available, Assigned, Maintenance, Retired)" />
@@ -573,7 +572,6 @@
                                         <Button text="Export Excel" icon="sap-icon://excel-attachment" />
                                     </HBox>
                                 </VBox>
-
                                 <VBox class="reportCard">
                                     <Title text="Department Assets Report" level="H3" titleStyle="H3" />
                                     <Text text="Assets allocated to each department with assigned employees" />
@@ -583,7 +581,6 @@
                                         <Button text="Export Excel" icon="sap-icon://excel-attachment" />
                                     </HBox>
                                 </VBox>
-
                                 <VBox class="reportCard">
                                     <Title text="Maintenance Schedule Report" level="H3" titleStyle="H3" />
                                     <Text text="Assets due for maintenance with last service dates" />
