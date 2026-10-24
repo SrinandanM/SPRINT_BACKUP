@@ -24,13 +24,24 @@ service AssetManagerService {
 
 @odata.draft.enabled
 entity AssetRequests as projection on db.AssetRequests;
+
+    /* =========================================
+       DASHBOARD KPIs (READ ONLY FOR MANAGER)
+       ========================================= */
+
+    entity AssetStatusChart as projection on db.AssetStatusChart;
+    entity AssetCategoryChart as projection on db.AssetCategoryChart;
+    entity DepartmentAssetChart as projection on db.DepartmentAssetChart;
+    entity AssetKPIs as projection on db.AssetKPIs;
+
     action CreateAssetRequest(
         employeeID    : UUID,
         categoryID    : UUID,
         justification : String
     );
+    
     action AssignApprovedAsset(
-    requestID : UUID,
-    assetID   : UUID
-);
+        requestID : UUID,
+        assetID   : UUID
+    );
 }

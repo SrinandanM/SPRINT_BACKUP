@@ -236,7 +236,7 @@ await UPDATE(Assets)
     await INSERT.into(ArchiveRecords).entries({
         asset_ID: assetID,
         archivedAt: new Date(),
-        archivedBy: 'ADMIN',
+        archivedBy: req.user.id || 'SYSTEM',  // Capture actual user ID
         reason: reason
     });
 
@@ -592,7 +592,50 @@ this.on('READ', 'DepartmentAssetChart', async () => {
     return result;
 });
 
+// ===== EMAIL SERVICE FUNCTION =====
+async function sendEmailReport(pdfBuffer, recipientEmail, reportName) {
+    try {
+        const nodemailer = require('nodemailer');
+        
+        // Create a test transporter (for development)
+        // In production, configure with actual SMTP settings
+        let transporter = nodemailer.createTransport({
+            host: process.env.MAIL_HOST || 'localhost',
+            port: process.env.MAIL_PORT || 1025,
+            secure: false,
+            auth: process.env.MAIL_USER ? {
+                user: process.env.MAIL_USER,
+                pass: process.env.MAIL_PASS
+            } : undefined
+        });
 
+        const mailOptions = {
+            from: process.env.MAIL_FROM || 'noreply@capm.local',
+            to: recipientEmail,
+            subject: `Asset Lifecycle Report - ${reportName}`,
+            html: `<h2>Asset Lifecycle Management Report</h2>
+                   <p>Please find attached the requested ${reportName} report.</p>
+                   <p>Generated on: ${new Date().toLocaleString()}</p>
+                   <p>This is an automated report from CAPM system.</p>`,
+            attachments: [{
+                filename: `${reportName}-${Date.now()}.pdf`,
+                content: pdfBuffer,
+                contentType: 'application/pdf'
+            }]
+        };
+
+        const result = await transporter.sendMail(mailOptions);
+        
+        console.log(`Email sent successfully to ${recipientEmail}:`, result.messageId);
+        return { success: true, messageId: result.messageId, recipient: recipientEmail };
+    } catch (error) {
+        console.error('Email sending failed:', error.message);
+        return { success: false, error: error.message };
+    }
+}
+
+// Make email service available to all actions
+this.email = sendEmailReport;
 
 cds.on('served', async () => {
 

@@ -28,7 +28,8 @@
     "@cap-js/hana": "^3.1.2",
     "@sap/cds": "^10.1.1",
     "hana": "^0.0.2",
-    "jspdf": "^4.2.1"
+    "jspdf": "^4.2.1",
+    "nodemailer": "^6.9.7"
   },
   "workspaces": [
     "app/*"

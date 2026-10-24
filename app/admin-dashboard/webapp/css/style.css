@@ -1,82 +1,105 @@
 /* ===================================================
+   DASHBOARD - PROFESSIONAL THEME
+   =================================================== */
+
+/* Global Styling */
+body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    font-family: 'Segoe UI', 'SAP-icons', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.sapMPage {
+    background: #f5f7fa !important;
+}
+
+/* ===================================================
    DASHBOARD HEADER
    =================================================== */
 
 .dashboardHeader {
-    background: linear-gradient(135deg,#0A6ED1,#4F46E5);
-    padding: 2.5rem;
-    margin: 1rem;
-    border-radius: 20px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    background: linear-gradient(135deg, #0A6ED1 0%, #4F46E5 100%);
+    padding: 3rem 2.5rem;
+    margin: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(10, 110, 209, 0.25);
+    border-left: 4px solid #00d4ff;
 }
 
 .dashboardHeader .sapMTitle {
     color: white !important;
     font-size: 2rem !important;
-    font-weight: bold;
+    font-weight: 700 !important;
+    letter-spacing: -0.5px;
 }
 
 .dashboardHeader .sapMText {
-    color: white !important;
+    color: rgba(255, 255, 255, 0.95) !important;
     font-size: 1rem;
+    margin-top: 8px;
+    font-weight: 400;
 }
 
 /* ===================================================
-   KPI CARDS
+   KPI TILES / NUMBER TILES
    =================================================== */
 
 .sapMGT {
-    margin: 0.75rem;
-    border-radius: 16px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-    transition: all 0.3s ease;
+    margin: 12px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
 }
 
 .sapMGT:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+}
+
+.sapMGT:active {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .sapMNCValue {
-    font-size: 3rem !important;
-    font-weight: bold;
+    font-size: 3.5rem !important;
+    font-weight: 800 !important;
+    letter-spacing: -1px;
 }
 
-/* TOTAL */
+.sapMNCLabel {
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+}
+
+/* Tile Color Themes */
 
 #tileTotal {
-    background: #0A6ED1;
+    background: linear-gradient(135deg, #0A6ED1 0%, #1e88e5 100%);
 }
-
-/* AVAILABLE */
 
 #tileAvailable {
-    background: #107E3E;
+    background: linear-gradient(135deg, #107E3E 0%, #2e7d32 100%);
 }
-
-/* ASSIGNED */
 
 #tileAssigned {
-    background: #5D36FF;
+    background: linear-gradient(135deg, #5D36FF 0%, #6f42c1 100%);
 }
-
-/* MAINTENANCE */
 
 #tileMaintenance {
-    background: #E9730C;
+    background: linear-gradient(135deg, #E9730C 0%, #f57c00 100%);
 }
-
-/* RETIRED */
 
 #tileRetired {
-    background: #6A6D70;
+    background: linear-gradient(135deg, #6A6D70 0%, #78909c 100%);
 }
-
-/* ARCHIVED */
 
 #tileArchived {
-    background: #8E44AD;
+    background: linear-gradient(135deg, #8E44AD 0%, #7b1fa2 100%);
 }
 
+/* All Tiles - White Text */
 #tileTotal *,
 #tileAvailable *,
 #tileAssigned *,
@@ -84,26 +107,226 @@
 #tileRetired *,
 #tileArchived * {
     color: white !important;
+    fill: white !important;
 }
 
 /* ===================================================
-   CHART AREA
+   CHART CONTAINERS
    =================================================== */
+
+.chartContainer {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 1.5rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.chartContainer:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
 
 #statusBox,
 #categoryBox,
 #departmentBox {
     background: white;
-    border-radius: 20px;
-    padding: 1rem;
-    margin: 0.5rem;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1.5rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
+    border: 1px solid #e8e8e8;
+    transition: all 0.3s ease;
+}
+
+#statusBox:hover,
+#categoryBox:hover,
+#departmentBox:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.chartTitle {
+    font-size: 1.3rem !important;
+    font-weight: 700 !important;
+    color: #0A6ED1 !important;
+    margin-bottom: 1rem !important;
 }
 
 /* ===================================================
-   PAGE
+   CHARTS - VizFrame Styling
+   =================================================== */
+
+.sapVizFrame {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* ===================================================
+   LAYOUT & SPACING
+   =================================================== */
+
+.sapMVBox {
+    padding: 0;
+}
+
+.sapMHBox {
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+/* ===================================================
+   PAGE BACKGROUND
    =================================================== */
 
 .sapMPage {
-    background: #F5F7FA;
+    background: #f5f7fa !important;
+}
+
+/* ===================================================
+   RESPONSIVE TILES
+   =================================================== */
+
+@media (max-width: 1024px) {
+    .sapMGT {
+        margin: 8px;
+        flex: 1 1 calc(50% - 16px);
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboardHeader {
+        padding: 2rem 1.5rem;
+        margin: 1rem;
+    }
+
+    .dashboardHeader .sapMTitle {
+        font-size: 1.5rem !important;
+    }
+
+    .sapMGT {
+        margin: 6px;
+        flex: 1 1 100%;
+    }
+
+    .chartContainer {
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    .sapMNCValue {
+        font-size: 2.5rem !important;
+    }
+}
+
+/* ===================================================
+   ANIMATION EFFECTS
+   =================================================== */
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.sapMGT,
+.chartContainer,
+#statusBox,
+#categoryBox,
+#departmentBox {
+    animation: slideUp 0.5s ease-out;
+}
+
+/* ===================================================
+   TEXT STYLING
+   =================================================== */
+
+.sapMText {
+    font-weight: 500;
+    color: #424242;
+}
+
+.sapMTitle {
+    color: #0A6ED1 !important;
+    font-weight: 700 !important;
+}
+
+/* ===================================================
+   SCROLL & CONTENT
+   =================================================== */
+
+.sapMPage .sapMNavigation {
+    background: #ffffff !important;
+}
+
+/* For better readability */
+.sapMContent {
+    background: #f5f7fa !important;
+}
+
+/* ===================================================
+   CUSTOM CLASSES FOR SPECIFIC STYLING
+   =================================================== */
+
+.dashboardKpiRow {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.dashboardChartsRow {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+    padding: 0 1rem;
+}
+
+.modernDashboard {
+    background: #f5f7fa;
+    min-height: 100vh;
+}
+
+/* ===================================================
+   UTILITY CLASSES
+   =================================================== */
+
+.sapUiSmallMarginTop {
+    margin-top: 1rem !important;
+}
+
+.sapUiMediumMarginTop {
+    margin-top: 1.5rem !important;
+}
+
+.sapUiLargeMarginTop {
+    margin-top: 2rem !important;
+}
+
+.sapUiSmallMarginBottom {
+    margin-bottom: 1rem !important;
+}
+
+.sapUiMediumMarginBottom {
+    margin-bottom: 1.5rem !important;
+}
+
+.sapUiLargeMarginBottom {
+    margin-bottom: 2rem !important;
 }

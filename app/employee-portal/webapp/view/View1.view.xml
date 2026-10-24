@@ -1,267 +1,505 @@
 <mvc:View
     controllerName="employeeportal.controller.View1"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
 
     <Page
         id="employeePage"
-        title="Employee Portal">
+        title="Employee Portal"
+        enableScrolling="true"
+        class="sapUiResponsiveContentPadding">
+
+        <headerContent>
+            <Title
+                text="Employee Self-Service Portal"
+                level="H1"
+                titleStyle="H1"
+                class="sapUiLargeMarginBottom" />
+        </headerContent>
 
         <content>
 
             <HBox
                 id="mainLayout"
-                width="100%">
+                width="100%"
+                renderType="Bare">
 
-                <!-- MENU -->
+                <!-- MODERN SIDEBAR -->
 
-                <List
-                    id="navigationMenu"
-                    width="300px"
-                    mode="SingleSelectMaster"
-                    selectionChange=".onMenuSelect">
+                <VBox
+                    width="20%"
+                    class="modernSidebar">
 
-                    <StandardListItem
-                        id="dashboardItem"
-                        title="Dashboard"
-                        icon="sap-icon://home" />
+                    <List
+                        id="navigationMenu"
+                        width="100%"
+                        mode="SingleSelectMaster"
+                        selectionChange=".onMenuSelect"
+                        showSeparators="Inner">
 
-                    <StandardListItem
-                        id="assetsItem"
-                        title="My Assets"
-                        icon="sap-icon://laptop" />
+                        <StandardListItem
+                            id="dashboardItem"
+                            title="Dashboard"
+                            icon="sap-icon://home"
+                            type="Active"
+                            class="sidebarItem" />
 
-                    <StandardListItem
-                        id="requestsItem"
-                        title="My Requests"
-                        icon="sap-icon://workflow-tasks" />
+                        <StandardListItem
+                            id="assetsItem"
+                            title="My Assets"
+                            icon="sap-icon://laptop"
+                            type="Active"
+                            class="sidebarItem" />
 
-                    <StandardListItem
-                        id="profileItem"
-                        title="My Profile"
-                        icon="sap-icon://employee" />
+                        <StandardListItem
+                            id="requestsItem"
+                            title="My Requests"
+                            icon="sap-icon://workflow-tasks"
+                            type="Active"
+                            class="sidebarItem" />
 
-                </List>
+                        <StandardListItem
+                            id="profileItem"
+                            title="My Profile"
+                            icon="sap-icon://employee"
+                            type="Active"
+                            class="sidebarItem" />
 
-                <!-- CONTENT -->
+                    </List>
+
+                </VBox>
+
+                <!-- MODERN CONTENT AREA -->
 
                 <VBox
                     id="contentArea"
-                    width="100%"
-                    class="sapUiResponsiveContentPadding">
+                    width="80%"
+                    class="sapUiResponsiveContentPadding modernContent">
+
+                    <!-- DASHBOARD -->
+
+                    <VBox
+                        id="dashboardContainer"
+                        visible="true">
+
+                        <Title
+                            id="dashboardTitle"
+                            text="Dashboard"
+                            level="H2"
+                            titleStyle="H2"
+                            class="sapUiLargeMarginBottom sapUiLargeMarginTop" />
+
+                        <!-- STATISTICS CARDS -->
+
+                        <HBox
+                            class="statisticsRow">
+
+                            <VBox
+                                class="statisticCard">
+                                <ObjectNumber
+                                    number="{/assignedAssets}"
+                                    unit="Assets Assigned"
+                                    class="cardNumber" />
+                                <Text
+                                    text="Currently in Use"
+                                    class="cardLabel" />
+                            </VBox>
+
+                            <VBox
+                                class="statisticCard">
+                                <ObjectNumber
+                                    number="{/pendingRequests}"
+                                    unit="Pending Requests"
+                                    class="cardNumber" />
+                                <Text
+                                    text="Awaiting Approval"
+                                    class="cardLabel" />
+                            </VBox>
+
+                            <VBox
+                                class="statisticCard">
+                                <ObjectNumber
+                                    number="{/maintenanceAssets}"
+                                    unit="In Maintenance"
+                                    class="cardNumber" />
+                                <Text
+                                    text="Service in Progress"
+                                    class="cardLabel" />
+                            </VBox>
+
+                        </HBox>
+
+                        <!-- ASSET LIFESPAN SLIDER -->
+
+                        <Panel
+                            headerText="Asset Lifecycle Tracker"
+                            class="sliderPanel"
+                            expandable="true"
+                            expanded="true">
+
+                            <VBox
+                                class="sliderContainer">
+
+                                <Title
+                                    text="Asset Warranty Coverage"
+                                    level="H4"
+                                    class="sliderTitle" />
+
+                                <Text
+                                    text="Monitor your asset warranty period below:"
+                                    class="sliderDescription" />
+
+                                <!-- WARRANTY SLIDER -->
+
+                                <VBox
+                                    class="sliderItem"
+                                    style="margin-top: 20px">
+
+                                    <HBox
+                                        justifyContent="SpaceBetween">
+
+                                        <Label
+                                            text="Warranty Progress"
+                                            class="sliderLabel" />
+
+                                        <Text
+                                            text="{/warrantyPercentage}%"
+                                            class="sliderValue" />
+
+                                    </HBox>
+
+                                    <Slider
+                                        id="warrantySlider"
+                                        value="{/warrantyPercentage}"
+                                        enabled="false"
+                                        class="assetSlider"
+                                        width="100%"
+                                        step="1"
+                                        min="0"
+                                        max="100" />
 
-                    <Title
-                        id="contentTitle"
-                        text="Dashboard"
-                        level="H1" />
+                                </VBox>
 
-                    <Text
-                        id="contentText"
-                        text="Employee Self Service Dashboard" />
+                                <!-- DEPRECIATION SLIDER -->
 
-                    <Panel
-                        id="contentPanel"
-                        width="100%">
+                                <VBox
+                                    class="sliderItem"
+                                    style="margin-top: 24px">
 
-                        <!-- DASHBOARD -->
+                                    <HBox
+                                        justifyContent="SpaceBetween">
 
-                        <VBox
-                            id="dashboardContainer"
-                            visible="true">
+                                        <Label
+                                            text="Asset Depreciation"
+                                            class="sliderLabel" />
 
-                            <Title
-                                id="dashboardTitle"
-                                text="Employee Dashboard" />
+                                        <Text
+                                            text="{/depreciationPercentage}%"
+                                            class="sliderValue" />
 
-                            <Text
-                                id="dashboardText"
-                                text="Employee self service overview" />
+                                    </HBox>
 
-                        </VBox>
+                                    <Slider
+                                        id="depreciationSlider"
+                                        value="{/depreciationPercentage}"
+                                        enabled="false"
+                                        class="assetSlider"
+                                        width="100%"
+                                        step="1"
+                                        min="0"
+                                        max="100" />
 
-                        <!-- ASSETS -->
+                                </VBox>
 
-<VBox
-    id="assetsContainer"
-    visible="false">
+                                <!-- MAINTENANCE LIFESPAN SLIDER -->
 
-    <Title
-        id="assetsTitle"
-        text="My Assets" />
+                                <VBox
+                                    class="sliderItem"
+                                    style="margin-top: 24px">
 
-    <Table
-        id="assetTable"
-        growing="true"
-        sticky="ColumnHeaders"
-        items="{assets>/}">
+                                    <HBox
+                                        justifyContent="SpaceBetween">
 
-        <columns>
+                                        <Label
+                                            text="Maintenance Schedule (Months)"
+                                            class="sliderLabel" />
 
-            <Column>
-                <Text text="Asset Tag" />
-            </Column>
+                                        <Text
+                                            text="{/maintenanceMonths}"
+                                            class="sliderValue" />
 
-            <Column>
-                <Text text="Model" />
-            </Column>
+                                    </HBox>
 
-            <Column>
-                <Text text="Status" />
-            </Column>
+                                    <Slider
+                                        id="maintenanceSlider"
+                                        value="{/maintenanceMonths}"
+                                        enabled="false"
+                                        class="assetSlider"
+                                        width="100%"
+                                        step="1"
+                                        min="0"
+                                        max="60" />
 
-            <Column>
-                <Text text="Serial Number" />
-            </Column>
+                                </VBox>
 
-        </columns>
+                            </VBox>
 
-        <items>
+                        </Panel>
 
-            <ColumnListItem>
+                    </VBox>
 
-                <cells>
+                    <!-- MY ASSETS -->
 
-                    <Text
-                        text="{assets>assetTag}" />
+                    <VBox
+                        id="assetsContainer"
+                        visible="false">
 
-                    <Text
-                        text="{assets>model}" />
+                        <Title
+                            id="assetsTitle"
+                            text="My Assets"
+                            level="H2"
+                            titleStyle="H2"
+                            class="sapUiLargeMarginBottom sapUiLargeMarginTop" />
 
-                    <ObjectStatus
-                        text="{assets>status}" />
+                        <Toolbar
+                            class="modernToolbar">
 
-                    <Text
-                        text="{assets>serialNumber}" />
+                            <SearchField
+                                width="320px"
+                                liveChange=".onAssetSearch"
+                                placeholder="Search Assets"
+                                class="modernSearch" />
 
-                </cells>
+                            <ToolbarSpacer />
 
-            </ColumnListItem>
+                            <Button
+                                text="Request Asset"
+                                type="Emphasized"
+                                icon="sap-icon://add"
+                                press=".onRequestAsset" />
 
-        </items>
+                        </Toolbar>
 
-    </Table>
+                        <Table
+                            id="assetTable"
+                            growing="true"
+                            sticky="ColumnHeaders"
+                            items="{assets>/}"
+                            class="modernTable">
 
-</VBox>
+                            <columns>
 
-                        <!-- REQUESTS -->
+                                <Column>
+                                    <Text text="Asset Tag" />
+                                </Column>
 
-<VBox
-    id="requestsContainer"
-    visible="false">
+                                <Column>
+                                    <Text text="Model" />
+                                </Column>
 
-    <Title
-        id="requestsTitle"
-        text="My Requests" />
+                                <Column>
+                                    <Text text="Status" />
+                                </Column>
 
-    <Table
-        id="requestTable"
-        growing="true"
-        sticky="ColumnHeaders"
-        items="{requests>/}">
+                                <Column>
+                                    <Text text="Serial Number" />
+                                </Column>
 
-        <columns>
+                                <Column>
+                                    <Text text="Category" />
+                                </Column>
 
-            <Column>
-                <Text text="Category" />
-            </Column>
+                            </columns>
 
-            <Column>
-                <Text text="Justification" />
-            </Column>
+                            <items>
 
-            <Column>
-                <Text text="Status" />
-            </Column>
+                                <ColumnListItem>
 
-            <Column>
-                <Text text="Approval Date" />
-            </Column>
+                                    <cells>
 
-            <Column>
-                <Text text="Remarks" />
-            </Column>
+                                        <Text
+                                            text="{assets>assetTag}"
+                                            class="assetTagHighlight" />
 
-        </columns>
+                                        <Text
+                                            text="{assets>model}" />
 
-        <items>
+                                        <ObjectStatus
+                                            text="{assets>status}"
+                                            state="{
+                                                path: 'assets>status',
+                                                formatter: '.formatStatusState'
+                                            }" />
 
-            <ColumnListItem>
+                                        <Text
+                                            text="{assets>serialNumber}" />
 
-                <cells>
+                                        <Text
+                                            text="{assets>categoryName}" />
 
-                    <Text
-                        text="{requests>categoryName}" />
+                                    </cells>
 
-                    <Text
-                        text="{requests>justification}" />
+                                </ColumnListItem>
 
-                    <ObjectStatus
-                        text="{requests>status}"
-                        state="{=
-                            ${requests>status} === 'APPROVED'
-                            ? 'Success'
-                            : ${requests>status} === 'REJECTED'
-                            ? 'Error'
-                            : 'Warning'
-                        }" />
+                            </items>
 
-                    <Text
-                        text="{requests>approvalDate}" />
+                        </Table>
 
-                    <Text
-                        text="{requests>remarks}" />
+                    </VBox>
 
-                </cells>
+                    <!-- MY REQUESTS -->
 
-            </ColumnListItem>
+                    <VBox
+                        id="requestsContainer"
+                        visible="false">
 
-        </items>
+                        <Title
+                            id="requestsTitle"
+                            text="My Requests"
+                            level="H2"
+                            titleStyle="H2"
+                            class="sapUiLargeMarginBottom sapUiLargeMarginTop" />
 
-    </Table>
+                        <Toolbar
+                            class="modernToolbar">
 
-</VBox>
+                            <Button
+                                text="New Request"
+                                type="Emphasized"
+                                icon="sap-icon://add"
+                                press=".onNewRequest" />
 
-                        <!-- PROFILE -->
+                            <ToolbarSpacer />
 
-<VBox
-    id="profileContainer"
-    visible="false">
+                            <SearchField
+                                width="320px"
+                                liveChange=".onRequestSearch"
+                                placeholder="Search Requests"
+                                class="modernSearch" />
 
-    <Title
-        id="profileTitle"
-        text="My Profile" />
+                        </Toolbar>
 
-<VBox
-    id="profileDetailsBox"
-    class="sapUiMediumMargin">
+                        <Table
+                            id="requestTable"
+                            growing="true"
+                            sticky="ColumnHeaders"
+                            items="{requests>/}"
+                            class="modernTable">
 
-    <Label text="Employee Number" />
-    <Text text="{profile>/employeeNumber}" />
+                            <columns>
 
-    <Label text="Full Name" />
-    <Text text="{profile>/fullName}" />
+                                <Column>
+                                    <Text text="Category" />
+                                </Column>
 
-    <Label text="Email" />
-    <Text text="{profile>/email}" />
+                                <Column>
+                                    <Text text="Justification" />
+                                </Column>
 
-    <Label text="Phone" />
-    <Text text="{profile>/phone}" />
+                                <Column>
+                                    <Text text="Status" />
+                                </Column>
 
-    <Label text="Location" />
-    <Text text="{profile>/location}" />
+                                <Column>
+                                    <Text text="Approval Date" />
+                                </Column>
 
-    <Label text="Role" />
-    <Text text="{profile>/role}" />
+                                <Column>
+                                    <Text text="Remarks" />
+                                </Column>
 
-    <Label text="Status" />
-    <ObjectStatus
-        text="{profile>/status}" />
+                            </columns>
 
-</VBox>
+                            <items>
 
-</VBox>
+                                <ColumnListItem>
 
-                    </Panel>
+                                    <cells>
+
+                                        <Text
+                                            text="{requests>categoryName}" />
+
+                                        <Text
+                                            text="{requests>justification}" />
+
+                                        <ObjectStatus
+                                            text="{requests>status}"
+                                            state="{
+                                                path: 'requests>status',
+                                                formatter: '.formatRequestStatus'
+                                            }" />
+
+                                        <Text
+                                            text="{requests>approvalDate}" />
+
+                                        <Text
+                                            text="{requests>remarks}" />
+
+                                    </cells>
+
+                                </ColumnListItem>
+
+                            </items>
+
+                        </Table>
+
+                    </VBox>
+
+                    <!-- PROFILE -->
+
+                    <VBox
+                        id="profileContainer"
+                        visible="false">
+
+                        <Title
+                            id="profileTitle"
+                            text="My Profile"
+                            level="H2"
+                            titleStyle="H2"
+                            class="sapUiLargeMarginBottom sapUiLargeMarginTop" />
+
+                        <Panel
+                            headerText="Employee Information"
+                            class="profilePanel">
+
+                            <Form
+                                editable="false">
+
+                                <FormContainer>
+
+                                    <FormElement>
+                                        <Label text="Full Name" />
+                                        <Text text="{/employeeName}" />
+                                    </FormElement>
+
+                                    <FormElement>
+                                        <Label text="Employee Number" />
+                                        <Text text="{/employeeNumber}" />
+                                    </FormElement>
+
+                                    <FormElement>
+                                        <Label text="Email" />
+                                        <Text text="{/email}" />
+                                    </FormElement>
+
+                                    <FormElement>
+                                        <Label text="Department" />
+                                        <Text text="{/department}" />
+                                    </FormElement>
+
+                                    <FormElement>
+                                        <Label text="Role" />
+                                        <Text text="{/role}" />
+                                    </FormElement>
+
+                                </FormContainer>
+
+                            </Form>
+
+                        </Panel>
+
+                    </VBox>
 
                 </VBox>
 

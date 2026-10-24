@@ -23,14 +23,58 @@ entity Assets as projection on db.Assets {
 } actions {
 
 action AssignAsset(
-    employeeID   : UUID,
-    assignedDate : Date
+    employeeID   : UUID @(
+        Common.Label : 'Employee',
+        Common.ValueList : {
+            CollectionPath : 'Employees',
+            Parameters : [
+                {
+                    $Type : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'employeeID',
+                    ValueListProperty : 'ID'
+                },
+                {
+                    $Type : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'fullName'
+                },
+                {
+                    $Type : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'employeeNumber'
+                }
+            ]
+        }
+    ),
+    assignedDate : Date @(
+        Common.Label : 'Assigned Date'
+    )
 );
 
     action TransferAsset(
-        toEmployeeID : UUID,
-        transferDate : Date
-    );
+    toEmployeeID : UUID @(
+        Common.Label : 'Transfer To Employee',
+        Common.ValueList : {
+            CollectionPath : 'Employees',
+            Parameters : [
+                {
+                    $Type : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'toEmployeeID',
+                    ValueListProperty : 'ID'
+                },
+                {
+                    $Type : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'fullName'
+                },
+                {
+                    $Type : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'employeeNumber'
+                }
+            ]
+        }
+    ),
+    transferDate : Date @(
+        Common.Label : 'Transfer Date'
+    )
+);
   
     action ReturnAsset(
         returnDate : Date

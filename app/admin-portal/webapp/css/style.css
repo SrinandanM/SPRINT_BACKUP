@@ -1,5 +1,243 @@
+/* ===== MODERN PORTAL THEME ===== */
+
+/* Global Styling */
+body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.sapMPage {
+    background: #ffffff !important;
+}
+
+/* Modern Sidebar */
+.modernSidebar {
+    background: linear-gradient(180deg, #1e3c72 0%, #2a5298 100%) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    border-radius: 0 12px 12px 0;
+}
+
+.modernSidebar .sapMList {
+    background: transparent !important;
+}
+
+.modernSidebar .sidebarItem {
+    color: #ffffff !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.modernSidebar .sidebarItem:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.modernSidebar .sidebarItem.sapMLIBSelected {
+    background: rgba(255, 255, 255, 0.25) !important;
+    border-left: 4px solid #00b4f0 !important;
+    padding-left: 16px !important;
+}
+
+.modernSidebar .sapMSLITitleOnly {
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+}
+
+.modernSidebar .sapUiIcon {
+    color: #00b4f0 !important;
+    font-size: 1.3rem !important;
+    margin-right: 12px !important;
+}
+
+/* Modern Content Area */
+.modernContent {
+    background: #ffffff;
+    padding: 32px 40px !important;
+}
+
+/* Modern Toolbar */
+.modernToolbar {
+    background: linear-gradient(90deg, #f5f7fa 0%, #e9ecef 100%) !important;
+    border: 1px solid #e0e0e0 !important;
+    border-radius: 8px;
+    padding: 12px 16px !important;
+    margin-bottom: 24px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.modernToolbar .sapMBtn {
+    border-radius: 6px !important;
+    font-weight: 500 !important;
+    margin-right: 8px !important;
+}
+
+.modernToolbar .sapMBtnEmphasized {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.modernToolbar .sapMBtnEmphasized:hover {
+    box-shadow: 0 6px 16px rgba(102, 126, 234, 0.6);
+}
+
+.modernToolbar .sapMBtnNegative {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+}
+
+.modernToolbar .sapMBtnNegative:hover {
+    box-shadow: 0 4px 12px rgba(245, 87, 108, 0.4);
+}
+
+.modernToolbar .sapMBtnAttention {
+    background: linear-gradient(135deg, #ffa726 0%, #fb8c00 100%) !important;
+}
+
+/* Modern Search Field */
+.modernSearch {
+    border-radius: 20px !important;
+    background: #ffffff !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+}
+
+.modernSearch .sapMInputVH {
+    border-radius: 20px !important;
+}
+
+/* Modern Table */
+.modernTable {
+    border-radius: 8px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+    overflow: hidden;
+}
+
+.modernTable .sapMListTblHeaderCell {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    border-bottom: 2px solid #667eea !important;
+}
+
+.modernTable .sapMListTblRow:hover {
+    background: #f5f7fa !important;
+    transition: all 0.3s ease;
+}
+
+.modernTable .sapMListTblRow:nth-child(even) {
+    background: #fafbfc;
+}
+
+/* Title Styling */
+.sapMTitle {
+    font-weight: 700 !important;
+    color: #1e3c72 !important;
+    margin-bottom: 16px !important;
+}
+
+/* Buttons */
+.sapMBtn {
+    transition: all 0.3s ease;
+    border-radius: 6px !important;
+}
+
+.sapMBtn:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Object Status */
+.sapMObjectStatus {
+    border-radius: 12px;
+    padding: 4px 12px !important;
+    font-weight: 500;
+}
+
+.sapMObjectStatus.sapMObjectStatusGood {
+    background: rgba(5, 184, 80, 0.15) !important;
+    color: #05b850 !important;
+}
+
+.sapMObjectStatus.sapMObjectStatusWarning {
+    background: rgba(255, 167, 38, 0.15) !important;
+    color: #ffa726 !important;
+}
+
+.sapMObjectStatus.sapMObjectStatusError {
+    background: rgba(245, 87, 108, 0.15) !important;
+    color: #f5576c !important;
+}
+
+.sapMObjectStatus.sapMObjectStatusNone {
+    background: rgba(189, 198, 212, 0.15) !important;
+    color: #757575 !important;
+}
+
+/* iFrame Styling */
+.sapUIHtml {
+    border-radius: 12px !important;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .modernSidebar {
+        width: 0 !important;
+        transform: translateX(-100%);
+    }
+
+    .modernContent {
+        width: 100% !important;
+        padding: 16px !important;
+    }
+
+    .modernToolbar {
+        flex-direction: column !important;
+        gap: 8px;
+    }
+
+    .modernSearch {
+        width: 100% !important;
+    }
+}
+
+/* Animation Effects */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modernContent {
+    animation: slideIn 0.3s ease;
+}
+
+/* Navigation Menu Styling */
+#navigationMenu .sapMLIB {
+    min-height: 4.5rem !important;
+    padding: 12px 16px !important;
+}
+
+#navigationMenu .sapMSLITitleOnly {
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    color: #ffffff !important;
+}
+
+#navigationMenu .sapUiIcon {
+    font-size: 1.4rem !important;
+    margin-right: 16px !important;
+    color: #00b4f0 !important;
+}
+
+/* List Item Styling */
 .sapMLIB {
     min-height: 3.5rem !important;
+    transition: all 0.2s ease;
 }
 
 .sapMSLITitleOnly {
@@ -10,28 +248,16 @@
 .sapUiIcon {
     font-size: 1.2rem !important;
 }
-#navigationMenu .sapMLIB {
-    min-height: 4.5rem !important;
+
+/* Panel/Card Styling */
+.sapMPanel {
+    border-radius: 12px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+    margin-bottom: 24px !important;
 }
 
-#navigationMenu .sapMSLITitleOnly {
-    font-size: 1.15rem !important;
-    font-weight: 700 !important;
-}
-
-#navigationMenu .sapUiIcon {
-    font-size: 1.5rem !important;
-}
-#navigationMenu .sapMLIB {
-    min-height: 5rem !important;
-}
-
-#navigationMenu .sapMSLITitleOnly {
-    font-size: 1.2rem !important;
-    font-weight: 700 !important;
-}
-
-#navigationMenu .sapUiIcon {
-    font-size: 1.5rem !important;
-    margin-right: 1rem !important;
+.sapMPanelExpandable .sapMPanelHdrBar {
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%) !important;
+    border-radius: 12px 12px 0 0 !important;
+    color: #ffffff !important;
 }
