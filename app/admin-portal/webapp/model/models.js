@@ -1,4 +1,4 @@
-sap.ui.define([
+sap.ui.define("asset/lifecycle/portal/adminportal/model/models", [
     "sap/ui/model/json/JSONModel",
     "sap/ui/Device"
 ], 
